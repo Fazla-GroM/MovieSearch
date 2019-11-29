@@ -7,6 +7,7 @@ import SearchResults from '../../components/searchResults/SearchResults';
 const SearchPage = ({ pageData }) => {
     const { title, query } = pageData;
 
+    console.log('SEARCH PAGE');
     return (
         <main css={cssSearchPage}>
             <div className="container">

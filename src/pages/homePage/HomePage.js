@@ -8,6 +8,7 @@ import HeroBox from '../../components/heroBox/HeroBox';
 import PoweredBy from '../../components/poweredBy/PoweredBy';
 
 const HomePage = props => {
+    console.log(props);
     return (
         <main>
             <HeroBox />
