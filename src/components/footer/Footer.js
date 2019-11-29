@@ -118,7 +118,12 @@ const Footer = props => {
             <nav className="nav">
                 <ul className="nav-list">
                     <li>
-                        <NavLink exact to="/" activeClassName="active">
+                        <NavLink
+                            onClick={() => dispatch(setIsNavOpen(false))}
+                            exact
+                            to="/"
+                            activeClassName="active"
+                        >
                             <FontAwesomeIcon icon={faHome} />
                         </NavLink>
                     </li>
@@ -131,12 +136,20 @@ const Footer = props => {
                         </div>
                     </li>
                     <li>
-                        <NavLink to="/favorites" activeClassName="active">
+                        <NavLink
+                            onClick={() => dispatch(setIsNavOpen(false))}
+                            to="/favorites"
+                            activeClassName="active"
+                        >
                             <FontAwesomeIcon icon={faHeart} />
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/signup" activeClassName="active">
+                        <NavLink
+                            onClick={() => dispatch(setIsNavOpen(false))}
+                            to="/signup"
+                            activeClassName="active"
+                        >
                             <FontAwesomeIcon icon={faUsers} />
                         </NavLink>
                     </li>
