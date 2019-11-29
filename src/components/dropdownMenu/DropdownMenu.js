@@ -44,7 +44,7 @@ const DropdownMenu = ({ title, data, hasInitialState }) => {
                 onChange={handleChange}
                 value={selectedOption}
                 options={data}
-                styles={cssSelect}
+                styles={cssDropdown}
             />
         </>
     );
@@ -58,7 +58,7 @@ const cssTitle = css({
 });
 
 //styles
-const cssSelect = {
+const cssDropdown = {
     container: (provided, state) => ({
         ...provided,
         outline: 'none',
@@ -72,6 +72,8 @@ const cssSelect = {
     }),
     control: (provided, state) => ({
         ...provided,
+        borderColor: 'none',
+        backgroundColor: 'transparent',
         border: `1px solid ${red}`,
         outline: 'none',
 

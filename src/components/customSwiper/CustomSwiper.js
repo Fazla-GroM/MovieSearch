@@ -12,10 +12,14 @@ const CustomSwiper = ({ data }) => {
         slidesPerView: 1,
         // centeredSlides: true,
         spaceBetween: 30,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            dynamicBullets: true
+        // pagination: {
+        //     el: '.swiper-pagination',
+        //     clickable: true,
+        //     dynamicBullets: true
+        // },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
         },
         breakpoints: {
             640: {
@@ -45,6 +49,21 @@ const CustomSwiper = ({ data }) => {
 
         '.swiper-wrapper': {
             boxSizing: 'border-box'
+        },
+
+        '.swiper-button-next, .swiper-button-prev': {
+            color: red,
+            top: '40%',
+
+            [mq[2]]: {
+                top: '47%'
+            }
+        },
+        '.swiper-button-next': {
+            right: '0'
+        },
+        '.swiper-button-prev': {
+            left: '0'
         },
 
         '.swiper-slide': {
