@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsNavOpen } from '../../redux/globals/globalsActions';
 import { selectIsNavOpen } from '../../redux/globals/globalsSelectors';
 //components
-import SearchBox from '../searchBox/SearchBox';
+import SearchBox from '../mobileSearchBox/MobileSearchBox';
 
 const MobileSearch = props => {
     const dispatch = useDispatch();
