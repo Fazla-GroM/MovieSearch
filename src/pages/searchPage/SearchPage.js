@@ -5,13 +5,24 @@ import { red, greyLight, greyDark } from '../../themeVar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPopularMovies } from '../../redux/movies/moviesActions';
 import { selectPopularMovies } from '../../redux/movies/moviesSelectors';
+//hooks
+import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 //components
 import SearchResults from '../../components/searchResults/SearchResults';
+
+const sasa = () => {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            resolve('foo');
+        }, 5000);
+    });
+};
 
 const SearchPage = props => {
     const { title, query } = props.pageData;
     const dispatch = useDispatch();
     const popularMovies = useSelector(selectPopularMovies);
+    const [isFetching, setIsFetching] = useInfiniteScroll(sasa);
 
     useEffect(() => {
         dispatch(getPopularMovies(1));
@@ -22,6 +33,11 @@ const SearchPage = props => {
             <div className="container">
                 {title && <h2>{title}</h2>}
                 <SearchResults data={popularMovies} />
+                {isFetching && (
+                    <div style={{ color: 'white', fontSize: '4rem' }}>
+                        Fetching data...
+                    </div>
+                )}
             </div>
         </main>
     );

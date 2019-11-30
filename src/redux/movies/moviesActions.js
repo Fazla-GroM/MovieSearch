@@ -18,9 +18,10 @@ export const getPopularMovies = page => async dispatch => {
         res = await mainApi.get(
             `${popularMovies}?api_key=${apiKey}&language=en-US&page=${page}`
         );
+        console.log(res.data);
         dispatch({
             type: SET_POPULAR_MOVIES,
-            payload: res.data.results
+            payload: res.data
         });
     } catch (err) {
         console.log(err);

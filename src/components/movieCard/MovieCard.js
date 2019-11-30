@@ -5,8 +5,6 @@ import { red, greyLight } from '../../themeVar';
 const imgUrl = process.env.IMAGE_URL;
 
 const Card = ({ data }) => {
-    console.log(data);
-
     const cssCardImage = css({
         position: 'relative',
         backgroundImage: `url(${imgUrl}/w342${data?.poster_path})`,
@@ -23,7 +21,7 @@ const Card = ({ data }) => {
             <div css={cssCardImage}>
                 <div className="overlay"></div>
             </div>
-            <div className="card-title">{data?.title}</div>
+            <div className="card-title">{data?.title || data?.name}</div>
             <div className="card-content">
                 <ul className="content-top">
                     <li>
@@ -69,24 +67,26 @@ const cssCard = css({
     position: 'relative',
     overflow: 'hidden',
 
-    '&:hover': {
-        '.card-image': {
-            transform: 'scale(1.02)'
-        },
-        '.overlay': {
-            backgroundColor: 'rgba(0,0,0,0.435)'
-        },
+    [mq[2]]: {
+        '&:hover': {
+            '.card-image': {
+                transform: 'scale(1.02)'
+            },
+            '.overlay': {
+                backgroundColor: 'rgba(0,0,0,0.435)'
+            },
 
-        '.card-description': {
-            opacity: '1'
-        },
-        '.card-title': {
-            top: '2rem',
-            opacity: '1'
-        },
+            '.card-description': {
+                opacity: '1'
+            },
+            '.card-title': {
+                top: '2rem',
+                opacity: '1'
+            },
 
-        '.card-content': {
-            opacity: '1'
+            '.card-content': {
+                opacity: '1'
+            }
         }
     },
 

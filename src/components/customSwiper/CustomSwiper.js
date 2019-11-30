@@ -52,144 +52,28 @@ const CustomSwiper = ({ data }) => {
         },
 
         '.swiper-button-next, .swiper-button-prev': {
-            color: red,
-            top: '40%',
-
-            [mq[2]]: {
-                top: '47%'
-            }
-        },
-        '.swiper-button-next': {
-            right: '0'
-        },
-        '.swiper-button-prev': {
-            left: '0'
-        },
-
-        '.swiper-slide': {
-            height: ' auto'
-        },
-
-        [mq[2]]: {
-            '.swiper-slide-active, .swiper-slide-next': {
-                '.card-image': {
-                    transform: 'scale(1.02)'
-                },
-                '.overlay': {
-                    backgroundColor: 'rgba(0,0,0,0.435)'
-                },
-
-                '.card-description': {
-                    opacity: '1'
-                },
-                '.card-title': {
-                    top: '2rem',
-                    opacity: '1'
-                },
-
-                '.card-content': {
-                    opacity: '1'
-                }
-            }
-        },
-        [mq[0]]: {
-            '.swiper-slide-active': {
-                '.card-image': {
-                    transform: 'scale(1.02)'
-                },
-                '.overlay': {
-                    backgroundColor: 'rgba(0,0,0,0.435)'
-                },
-
-                '.card-description': {
-                    opacity: '1'
-                },
-                '.card-title': {
-                    top: '2rem',
-                    opacity: '1'
-                },
-
-                '.card-content': {
-                    opacity: '1'
-                }
-            },
-            '.swiper-slide-next': {
-                '.card-image': {
-                    transform: 'scale(1)'
-                },
-                '.overlay': {
-                    backgroundColor: 'transparent'
-                },
-
-                '.card-description': {
-                    opacity: '0'
-                },
-                '.card-title': {
-                    top: '-2rem',
-                    opacity: '0'
-                },
-
-                '.card-content': {
-                    opacity: '0'
-                }
-            }
-        },
-
-        '.swiper-pagination': {
-            bottom: '0'
-        },
-
-        '.swiper-pagination-bullet': {
-            backgroundColor: red,
-            opacity: '1',
-            width: '3rem',
-            height: '0.4rem',
-            borderRadius: '.5rem',
-            transform: 'scale(1)'
-        },
-
-        '.swiper-pagination-bullet-active': {
-            backgroundColor: red
-            //transform: scale(1);
+            color: red
         }
     });
 
     return (
         <div css={cssSwiper}>
-            <Swiper {...params}>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-            </Swiper>
+            {data && (
+                <Swiper {...params}>
+                    {data &&
+                        data.map(item => {
+                            return (
+                                <div key={item?.id}>
+                                    <Card data={item}></Card>
+                                </div>
+                            );
+                        })}
+                </Swiper>
+            )}
         </div>
     );
 };
 
 export default CustomSwiper;
 
-/*
-
-
-
-{data.map(item => {
-  return (
-    <div key={item.ID}>
-      <Card data={item} cardStyle={cardStyle} />
-    </div>
-  );
-})}
-
-
-*/
+//styles
