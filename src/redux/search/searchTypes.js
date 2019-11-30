@@ -1,1 +1,0 @@
-export const SET_IS_SEARCH_OPEN = 'SET_IS_SEARCH_OPEN';

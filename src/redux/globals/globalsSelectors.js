@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 
-const selectGlobals = state => state.globals;
+const globalsSelector = state => state.globals;
 
 export const selectIsNavOpen = createSelector(
-    [selectGlobals],
+    [globalsSelector],
     globals => globals.isNavOpen
 );

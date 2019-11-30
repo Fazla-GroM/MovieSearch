@@ -5,8 +5,6 @@ import emotionReset from 'emotion-reset';
 import { background } from './themeVar';
 //LAYOUT
 import Layout from './layout/Layout';
-//router
-import { BrowserRouter } from 'react-router-dom';
 //Routes
 import Routes from './routes/Routes';
 
@@ -91,11 +89,9 @@ const App = props => {
                     
                 `}
             />
-            <BrowserRouter>
-                <Layout>
-                    <Routes />
-                </Layout>
-            </BrowserRouter>
+            <Layout>
+                <Routes />
+            </Layout>
         </>
     );
 };

@@ -39,7 +39,10 @@ module.exports = function(_env, argv) {
                                 '@babel/preset-react',
                                 '@emotion/babel-preset-css-prop'
                             ],
-                            plugins: ['@babel/plugin-syntax-dynamic-import']
+                            plugins: [
+                                '@babel/plugin-syntax-dynamic-import',
+                                '@babel/plugin-proposal-optional-chaining'
+                            ]
                         }
                     }
                 },

@@ -9,7 +9,8 @@ import SignUpPage from '../pages/signUpPage/SignUpPage';
 //css transition
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-const Routes = ({ location }) => {
+const Routes = props => {
+    const { location } = props;
     return (
         <TransitionGroup component={null}>
             <CSSTransition
@@ -33,6 +34,7 @@ const Routes = ({ location }) => {
                     </Route>
                     <Route path="/movies/popular">
                         <SearchPage
+                            {...props}
                             pageData={{
                                 title: 'Popular movies',
                                 query: '?=popular'

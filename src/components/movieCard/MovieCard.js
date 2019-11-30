@@ -3,7 +3,11 @@ import { css } from '@emotion/core';
 import { red, greyLight } from '../../themeVar';
 import image from '../../assets/bg.jpg';
 
+const imgUrl = process.env.IMAGE_URL;
+
 const Card = ({ data }) => {
+    console.log(data);
+
     const breakpoints = [768, 996, 1200];
     const mq = breakpoints.map(
         bp => ` @media only screen and (min-width: ${bp}px)`
@@ -52,7 +56,7 @@ const Card = ({ data }) => {
 
         '.card-image': {
             position: 'relative',
-            backgroundImage: `url(${image})`,
+            backgroundImage: `url(${imgUrl}/w342${data?.poster_path})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             width: '100%',
@@ -119,11 +123,18 @@ const Card = ({ data }) => {
 
     return (
         <div css={cssCard}>
-            <div className="card-description">Some movie description</div>
-            <div className="card-image">
+            <div className="card-description">{data?.overview}</div>
+            <div
+                className="card-image"
+                style={
+                    {
+                        // backgroundImage: `url(${imgUrl}/w342${data?.poster_path})`
+                    }
+                }
+            >
                 <div className="overlay"></div>
             </div>
-            <div className="card-title">Movie Title</div>
+            <div className="card-title">{data?.title}</div>
             <div className="card-content">
                 <ul className="content-top">
                     <li>
@@ -146,7 +157,9 @@ const Card = ({ data }) => {
                     </li>
                     <li>
                         <span className="content-title">language</span>
-                        <span className="content-value">english</span>
+                        <span className="content-value">
+                            {data?.original_language}
+                        </span>
                     </li>
                 </ul>
             </div>

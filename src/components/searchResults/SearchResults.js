@@ -6,6 +6,11 @@ import MovieCard from '../../components/movieCard/MovieCard';
 const SearchResults = ({ data }) => {
     return (
         <section css={cssResults}>
+            {data?.map(item => {
+                return <MovieCard key={item.id} data={item} />;
+            })}
+
+            {/* <MovieCard />
             <MovieCard />
             <MovieCard />
             <MovieCard />
@@ -16,8 +21,7 @@ const SearchResults = ({ data }) => {
             <MovieCard />
             <MovieCard />
             <MovieCard />
-            <MovieCard />
-            <MovieCard />
+            <MovieCard /> */}
         </section>
     );
 };
