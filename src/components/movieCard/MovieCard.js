@@ -1,137 +1,26 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { red, greyLight } from '../../themeVar';
-import image from '../../assets/bg.jpg';
 
 const imgUrl = process.env.IMAGE_URL;
 
 const Card = ({ data }) => {
     console.log(data);
 
-    const breakpoints = [768, 996, 1200];
-    const mq = breakpoints.map(
-        bp => ` @media only screen and (min-width: ${bp}px)`
-    );
-
-    const cssCard = css({
-        height: '40rem',
+    const cssCardImage = css({
         position: 'relative',
-        overflow: 'hidden',
-
-        '&:hover': {
-            '.card-image': {
-                transform: 'scale(1.02)'
-            },
-            '.overlay': {
-                backgroundColor: 'rgba(0,0,0,0.435)'
-            },
-
-            '.card-description': {
-                opacity: '1'
-            },
-            '.card-title': {
-                top: '2rem',
-                opacity: '1'
-            },
-
-            '.card-content': {
-                opacity: '1'
-            }
-        },
-
-        '.card-description': {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            zIndex: '2',
-            transform: 'translate(-50%,-50%)',
-            textAlign: 'center',
-            fontStyle: 'italic',
-            color: 'white',
-            width: '100%',
-            opacity: '0',
-            transition: 'opacity .4s ease-in-out',
-            backfaceVisibility: 'hidden'
-        },
-
-        '.card-image': {
-            position: 'relative',
-            backgroundImage: `url(${imgUrl}/w342${data?.poster_path})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            width: '100%',
-            height: '100%',
-            transition: 'all 0.4s ease-in-out'
-        },
-
-        '.overlay': {
-            position: 'absolute',
-            backgroundColor: 'transparent',
-            width: '100%',
-            height: '100%'
-        },
-
-        '.card-title': {
-            backfaceVisibility: 'hidden',
-            position: 'absolute',
-            top: '-4rem',
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textTransform: 'uppercase',
-            fontWeight: '700',
-            padding: '1rem 1rem',
-            backgroundColor: 'black',
-            color: red,
-            opacity: '0',
-            transition: 'all .2s ease-in-out'
-        },
-        '.card-content': {
-            position: 'absolute',
-            bottom: '0',
-            width: '100%',
-            backgroundColor: 'black',
-            padding: '1rem 1rem',
-            opacity: '0',
-            transition: 'opacity .4s ease-in-out',
-
-            '.content-top, .content-bottom': {
-                '& li': {
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                },
-                listStyle: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-            },
-
-            '.content-title': {
-                color: red,
-                marginRight: '.5rem',
-                fontWeight: '700',
-                textTransform: 'capitalize'
-            },
-            '.content-value': {
-                color: 'white',
-                fontSize: '1.4rem'
-            }
-        }
+        backgroundImage: `url(${imgUrl}/w342${data?.poster_path})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        width: '100%',
+        height: '100%',
+        transition: 'all 0.4s ease-in-out'
     });
 
     return (
         <div css={cssCard}>
             <div className="card-description">{data?.overview}</div>
-            <div
-                className="card-image"
-                style={
-                    {
-                        // backgroundImage: `url(${imgUrl}/w342${data?.poster_path})`
-                    }
-                }
-            >
+            <div css={cssCardImage}>
                 <div className="overlay"></div>
             </div>
             <div className="card-title">{data?.title}</div>
@@ -168,3 +57,107 @@ const Card = ({ data }) => {
 };
 
 export default Card;
+
+//styles
+const breakpoints = [768, 996, 1200];
+const mq = breakpoints.map(
+    bp => ` @media only screen and (min-width: ${bp}px)`
+);
+
+const cssCard = css({
+    height: '45rem',
+    position: 'relative',
+    overflow: 'hidden',
+
+    '&:hover': {
+        '.card-image': {
+            transform: 'scale(1.02)'
+        },
+        '.overlay': {
+            backgroundColor: 'rgba(0,0,0,0.435)'
+        },
+
+        '.card-description': {
+            opacity: '1'
+        },
+        '.card-title': {
+            top: '2rem',
+            opacity: '1'
+        },
+
+        '.card-content': {
+            opacity: '1'
+        }
+    },
+
+    '.card-description': {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        zIndex: '2',
+        transform: 'translate(-50%,-50%)',
+        textAlign: 'center',
+        fontStyle: 'italic',
+        color: 'white',
+        width: '100%',
+        opacity: '0',
+        transition: 'opacity .4s ease-in-out',
+        backfaceVisibility: 'hidden'
+    },
+
+    '.overlay': {
+        position: 'absolute',
+        backgroundColor: 'transparent',
+        width: '100%',
+        height: '100%'
+    },
+
+    '.card-title': {
+        backfaceVisibility: 'hidden',
+        position: 'absolute',
+        top: '-4rem',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textTransform: 'uppercase',
+        fontWeight: '700',
+        padding: '1rem 1rem',
+        backgroundColor: 'black',
+        color: red,
+        opacity: '0',
+        transition: 'all .2s ease-in-out'
+    },
+    '.card-content': {
+        position: 'absolute',
+        bottom: '0',
+        width: '100%',
+        backgroundColor: 'black',
+        padding: '1rem 1rem',
+        opacity: '0',
+        transition: 'opacity .4s ease-in-out',
+
+        '.content-top, .content-bottom': {
+            '& li': {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            },
+            listStyle: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+        },
+
+        '.content-title': {
+            color: red,
+            marginRight: '.5rem',
+            fontWeight: '700',
+            textTransform: 'capitalize'
+        },
+        '.content-value': {
+            color: 'white',
+            fontSize: '1.4rem'
+        }
+    }
+});

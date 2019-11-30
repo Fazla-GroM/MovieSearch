@@ -9,19 +9,6 @@ const SearchResults = ({ data }) => {
             {data?.map(item => {
                 return <MovieCard key={item.id} data={item} />;
             })}
-
-            {/* <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard /> */}
         </section>
     );
 };
