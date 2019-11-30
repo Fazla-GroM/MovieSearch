@@ -17,7 +17,7 @@ const DiscoverPage = props => {
     // let { path, url } = useRouteMatch();
     // console.log(url + 'URL');console.log(path + 'PATH');
     console.log('discover');
-    console.log(props);
+    console.log(process.env.API_KEY);
     return (
         <main css={cssDiscoverPage}>
             <div className="container">

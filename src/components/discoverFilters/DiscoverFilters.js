@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/core';
 import { red, greyDark, greyLight } from '../../themeVar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
-//coponent
+//component
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
 
 const sortBy = [
@@ -147,7 +145,6 @@ const DiscoverFilters = props => {
 export default DiscoverFilters;
 
 const cssDiscoverFilters = css({
-    // border: '1px solid red',
     marginBottom: '4rem'
 });
 

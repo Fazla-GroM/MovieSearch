@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
@@ -61,6 +62,7 @@ module.exports = function(_env, argv) {
             ]
         },
         plugins: [
+            new Dotenv(),
             new ErrorOverlayPlugin(),
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, 'public/index.html'),
