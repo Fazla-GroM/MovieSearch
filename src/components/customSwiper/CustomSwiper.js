@@ -43,8 +43,8 @@ const CustomSwiper = ({ data }) => {
         paddingBottom: '2rem',
 
         '.swiper-container': {
-            paddingTop: '1rem',
-            paddingBottom: '4rem'
+            //paddingTop: '1rem',
+            //paddingBottom: '4rem'
         },
 
         '.swiper-wrapper': {
@@ -58,16 +58,15 @@ const CustomSwiper = ({ data }) => {
 
     return (
         <div css={cssSwiper}>
-            {data && (
+            {data.length && (
                 <Swiper {...params}>
-                    {data &&
-                        data.map(item => {
-                            return (
-                                <div key={item?.id}>
-                                    <Card data={item}></Card>
-                                </div>
-                            );
-                        })}
+                    {data.map(item => {
+                        return (
+                            <div key={item?.id}>
+                                <Card data={item}></Card>
+                            </div>
+                        );
+                    })}
                 </Swiper>
             )}
         </div>

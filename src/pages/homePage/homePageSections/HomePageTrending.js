@@ -5,6 +5,17 @@ import { red, greyLight } from '../../../themeVar';
 import CustomSwiper from '../../../components/customSwiper/CustomSwiper';
 
 const HomePageTrending = ({ movieData, tvShowData, movieTitle, tvTitle }) => {
+    const checkDataLength = data => {
+        //check for the length of an array of movies
+        //10 items per swiper is max we want to show
+        const maxLength = 10;
+        if (data.length < maxLength) {
+            return data;
+        } else {
+            return data.slice(0, maxLength + 1);
+        }
+    };
+
     return (
         <section css={cssTrending}>
             <div className="container">
@@ -12,13 +23,13 @@ const HomePageTrending = ({ movieData, tvShowData, movieTitle, tvTitle }) => {
                     <div className="title">
                         <h3>{movieTitle}</h3>
                     </div>
-                    <CustomSwiper data={movieData} />
+                    <CustomSwiper data={checkDataLength(movieData)} />
                 </div>
                 <div className="swiper-box">
                     <div className="title">
                         <h3>{tvTitle}</h3>
                     </div>
-                    <CustomSwiper data={tvShowData} />
+                    <CustomSwiper data={checkDataLength(tvShowData)} />
                 </div>
             </div>
         </section>

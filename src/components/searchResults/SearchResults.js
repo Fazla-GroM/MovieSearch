@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import MovieCard from '../../components/movieCard/MovieCard';
 
 const SearchResults = ({ data }) => {
+    console.log('RERENDERING RESULTS');
     return (
         <section css={cssResults}>
             {data?.map(item => {

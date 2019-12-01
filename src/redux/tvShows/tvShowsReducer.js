@@ -1,35 +1,90 @@
-//TODO import types
+import {
+    SET_POPULAR_TV_SHOWS,
+    SET_TOP_RATED_TV_SHOWS,
+    SET_AIRING_NOW_TV_SHOWS,
+    SET_LATEST_TV_SHOWS
+} from './tvShowsTypes';
 
 const initialState = {
-    popularTvShows: [],
-    topRatedTvShows: [],
-    airingNowShows: [],
-    airingTodayTvShows: []
+    popularTvShows: {
+        currentPage: null,
+        pageToFetch: 1,
+        totalPages: null,
+        results: []
+    },
+    topRatedTvShows: {
+        currentPage: null,
+        pageToFetch: 1,
+        totalPages: null,
+        results: []
+    },
+    airingNowTvShows: {
+        currentPage: null,
+        pageToFetch: 1,
+        totalPages: null,
+        results: []
+    },
+    latestTvShows: {
+        currentPage: null,
+        pageToFetch: 1,
+        totalPages: null,
+        results: []
+    }
 };
-
 const tvShowsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_POPULAR_MOVIES:
+        case SET_POPULAR_TV_SHOWS:
             return {
                 ...state,
-                isSearchOpen: action.payload
+                popularTvShows: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
+                    results: [
+                        ...state.popularTvShows.results,
+                        ...action.payload.results
+                    ]
+                }
             };
-        case SET_TOP_RATED_MOVIES:
+        case SET_TOP_RATED_TV_SHOWS:
             return {
                 ...state,
-                isSearchOpen: action.payload
+                topRatedTvShows: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
+                    results: [
+                        ...state.topRatedTvShows.results,
+                        ...action.payload.results
+                    ]
+                }
             };
-        case SET_UPCOMING_MOVIES:
+        case SET_AIRING_NOW_TV_SHOWS:
             return {
                 ...state,
-                isSearchOpen: action.payload
+                airingNowTvShows: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
+                    results: [
+                        ...state.airingNowTvShows.results,
+                        ...action.payload.results
+                    ]
+                }
             };
-        case SET_NOW_PLAYING_MOVIES:
+        case SET_LATEST_TV_SHOWS:
             return {
                 ...state,
-                isSearchOpen: action.payload
+                latestTvShows: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
+                    results: [
+                        ...state.latestTvShows.results,
+                        ...action.payload.results
+                    ]
+                }
             };
-
         default:
             return state;
     }

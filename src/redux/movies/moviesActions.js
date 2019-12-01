@@ -15,36 +15,87 @@ const nowPlayingMovies = process.env.GET_NOW_PLAYING_MOVIES;
 export const getPopularMovies = page => async dispatch => {
     let res;
     try {
+        console.log('fecham filmove');
         res = await mainApi.get(
             `${popularMovies}?api_key=${apiKey}&language=en-US&page=${page}`
         );
-        console.log(res.data);
+
         dispatch({
             type: SET_POPULAR_MOVIES,
-            payload: res.data
+            payload: {
+                currentPage: res.data.page,
+                pageToFetch: res.data.page + 1,
+                totalPages: res.data.total_pages,
+                results: res.data.results
+            }
         });
     } catch (err) {
         console.log(err);
     }
 };
 
-export const getTopRatedMovies = isOpen => {
-    return {
-        type: SET_IS_SEARCH_OPEN,
-        payload: isOpen
-    };
+export const getTopRatedMovies = page => async dispatch => {
+    let res;
+    try {
+        console.log('fecham filmove');
+        res = await mainApi.get(
+            `${topRatedMovies}?api_key=${apiKey}&language=en-US&page=${page}`
+        );
+
+        dispatch({
+            type: SET_TOP_RATED_MOVIES,
+            payload: {
+                currentPage: res.data.page,
+                pageToFetch: res.data.page + 1,
+                totalPages: res.data.total_pages,
+                results: res.data.results
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
 };
 
-export const getUpcomingMovies = isOpen => {
-    return {
-        type: SET_IS_SEARCH_OPEN,
-        payload: isOpen
-    };
+export const getUpcomingMovies = page => async dispatch => {
+    let res;
+    try {
+        console.log('fecham filmove');
+        res = await mainApi.get(
+            `${upcomingMovies}?api_key=${apiKey}&language=en-US&page=${page}`
+        );
+
+        dispatch({
+            type: SET_UPCOMING_MOVIES,
+            payload: {
+                currentPage: res.data.page,
+                pageToFetch: res.data.page + 1,
+                totalPages: res.data.total_pages,
+                results: res.data.results
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
 };
 
-export const getNowPlayingMovies = isOpen => {
-    return {
-        type: SET_IS_SEARCH_OPEN,
-        payload: isOpen
-    };
+export const getNowPlayingMovies = page => async dispatch => {
+    let res;
+    try {
+        console.log('fecham filmove');
+        res = await mainApi.get(
+            `${nowPlayingMovies}?api_key=${apiKey}&language=en-US&page=${page}`
+        );
+
+        dispatch({
+            type: SET_NOW_PLAYING_MOVIES,
+            payload: {
+                currentPage: res.data.page,
+                pageToFetch: res.data.page + 1,
+                totalPages: res.data.total_pages,
+                results: res.data.results
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
 };

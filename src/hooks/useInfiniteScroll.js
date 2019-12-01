@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
-
 const useInfiniteScroll = callback => {
     const [isFetching, setIsFetching] = useState(false);
-    console.log(isFetching);
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    useEffect(() => {
-        if (!isFetching) return;
-        callback().then(() => setIsFetching(false));
-    }, [isFetching]);
-    const handleScroll = () => {
+    // useEffect(() => {
+    //     if (!isFetching) return;
+    //     callback(() => {
+    //         console.log('called back');
+    //     });
+    // }, [isFetching]);
+
+    function handleScroll() {
         if (
             window.innerHeight + document.documentElement.scrollTop !==
                 document.documentElement.offsetHeight ||
@@ -20,7 +22,7 @@ const useInfiniteScroll = callback => {
         )
             return;
         setIsFetching(true);
-    };
+    }
 
     return [isFetching, setIsFetching];
 };

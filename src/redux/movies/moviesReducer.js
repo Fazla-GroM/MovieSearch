@@ -6,10 +6,30 @@ import {
 } from './moviesTypes';
 
 const initialState = {
-    popularMovies: [],
-    topRatedMovies: [],
-    upcomingMovies: [],
-    nowPlayingMovies: []
+    popularMovies: {
+        currentPage: null,
+        pageToFetch: 1,
+        totalPages: null,
+        results: []
+    },
+    topRatedMovies: {
+        currentPage: null,
+        pageToFetch: 1,
+        totalPages: null,
+        results: []
+    },
+    upcomingMovies: {
+        currentPage: null,
+        pageToFetch: 1,
+        totalPages: null,
+        results: []
+    },
+    nowPlayingMovies: {
+        currentPage: null,
+        pageToFetch: 1,
+        totalPages: null,
+        results: []
+    }
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -17,22 +37,54 @@ const moviesReducer = (state = initialState, action) => {
         case SET_POPULAR_MOVIES:
             return {
                 ...state,
-                popularMovies: [...state.popularMovies, ...action.payload]
+                popularMovies: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
+                    results: [
+                        ...state.popularMovies.results,
+                        ...action.payload.results
+                    ]
+                }
             };
         case SET_TOP_RATED_MOVIES:
             return {
                 ...state,
-                topRatedMovies: [...state.topRatedMovies, ...action.payload]
+                topRatedMovies: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
+                    results: [
+                        ...state.topRatedMovies.results,
+                        ...action.payload.results
+                    ]
+                }
             };
         case SET_UPCOMING_MOVIES:
             return {
                 ...state,
-                upcomingMovies: [...state.upcomingMovies, ...action.payload]
+                upcomingMovies: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
+                    results: [
+                        ...state.upcomingMovies.results,
+                        ...action.payload.results
+                    ]
+                }
             };
         case SET_NOW_PLAYING_MOVIES:
             return {
                 ...state,
-                nowPlayingMovies: [...state.nowPlayingMovies, ...action.payload]
+                nowPlayingMovies: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
+                    results: [
+                        ...state.nowPlayingMovies.results,
+                        ...action.payload.results
+                    ]
+                }
             };
 
         default:

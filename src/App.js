@@ -7,6 +7,8 @@ import { background } from './themeVar';
 import Layout from './layout/Layout';
 //Routes
 import Routes from './routes/Routes';
+//scrolltop
+import ScrollToTop from './components/scrollToTop/ScrollToTop';
 
 const App = props => {
     return (
@@ -25,7 +27,6 @@ const App = props => {
                     html{
                         font-size: 62.5%;
                         box-sizing: border-box;
-                        scroll-behavior: smooth;
                     }
                     body {
                         line-height: 1.6;
@@ -89,9 +90,11 @@ const App = props => {
                     
                 `}
             />
-            <Layout>
-                <Routes />
-            </Layout>
+            <ScrollToTop>
+                <Layout>
+                    <Routes />
+                </Layout>
+            </ScrollToTop>
         </>
     );
 };

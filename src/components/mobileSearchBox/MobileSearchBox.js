@@ -196,10 +196,10 @@ const SearchBox = props => {
                             <li>
                                 <NavLink
                                     activeClassName="active"
-                                    to="/tv-shows/airing-today"
+                                    to="/tv-shows/latest"
                                 >
                                     <FontAwesomeIcon icon={faAngleRight} />
-                                    Airing Today
+                                    Latest Tv Shows
                                 </NavLink>
                             </li>
                         </ul>

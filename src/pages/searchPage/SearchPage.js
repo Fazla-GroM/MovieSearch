@@ -1,38 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/core';
 import { red, greyLight, greyDark } from '../../themeVar';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getPopularMovies } from '../../redux/movies/moviesActions';
-import { selectPopularMovies } from '../../redux/movies/moviesSelectors';
 //hooks
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 //components
 import SearchResults from '../../components/searchResults/SearchResults';
 
-const sasa = () => {
-    return new Promise(function(resolve, reject) {
-        setTimeout(function() {
-            resolve('foo');
-        }, 5000);
-    });
-};
-
 const SearchPage = props => {
-    const { title, query } = props.pageData;
+    const { title, getPageData, selector } = props.pageData;
     const dispatch = useDispatch();
-    const popularMovies = useSelector(selectPopularMovies);
-    const [isFetching, setIsFetching] = useInfiniteScroll(sasa);
+    const pageData = useSelector(selector);
+    const [isFetching, setIsFetching] = useInfiniteScroll();
+    console.log('RERENDERING');
 
     useEffect(() => {
-        dispatch(getPopularMovies(1));
-    }, []);
+        if (!pageData.results.length) {
+            dispatch(getPageData(pageData.pageToFetch));
+        }
+        if (pageData.currentPage === pageData.totalPages) {
+            setIsFetching(false);
+        }
+
+        if (isFetching && pageData.currentPage !== pageData.totalPages) {
+            dispatch(getPageData(pageData.pageToFetch)).then(() =>
+                setIsFetching(false)
+            );
+        }
+    }, [isFetching]);
 
     return (
         <main css={cssSearchPage}>
             <div className="container">
                 {title && <h2>{title}</h2>}
-                <SearchResults data={popularMovies} />
+
+                <SearchResults data={pageData.results} />
                 {isFetching && (
                     <div style={{ color: 'white', fontSize: '4rem' }}>
                         Fetching data...

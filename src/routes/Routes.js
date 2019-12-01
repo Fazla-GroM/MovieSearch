@@ -6,6 +6,31 @@ import DiscoverPage from '../pages/discoverPage/DiscoverPage';
 import SearchPage from '../pages/searchPage/SearchPage';
 import FavoritesPage from '../pages/favoritesPage/FavoritesPage';
 import SignUpPage from '../pages/signUpPage/SignUpPage';
+//redux
+import {
+    getPopularMovies,
+    getTopRatedMovies,
+    getUpcomingMovies,
+    getNowPlayingMovies
+} from '../redux/movies/moviesActions';
+import {
+    selectPopularMovies,
+    selectNowPlayingMovies,
+    selectTopRatedMovies,
+    selectUpcomingMovies
+} from '../redux/movies/moviesSelectors';
+import {
+    getPopularTvShows,
+    getTopRatedTvShows,
+    getAiringNowTvShows,
+    getLatestTvShows
+} from '../redux/tvShows/tvShowsActions';
+import {
+    selectPopularTvShows,
+    selectTopRatedTvShows,
+    selectAiringNowTvShows,
+    selectLatestTvShows
+} from '../redux/tvShows/tvShowsSelectors';
 //css transition
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -37,7 +62,8 @@ const Routes = props => {
                             {...props}
                             pageData={{
                                 title: 'Popular movies',
-                                query: '?=popular'
+                                getPageData: getPopularMovies,
+                                selector: selectPopularMovies
                             }}
                         />
                     </Route>
@@ -45,15 +71,18 @@ const Routes = props => {
                         <SearchPage
                             pageData={{
                                 title: 'Top Rated Movies',
-                                query: '?=top-rated'
+                                getPageData: getTopRatedMovies,
+                                selector: selectTopRatedMovies
                             }}
+                            {...props}
                         />
                     </Route>
                     <Route path="/movies/upcoming">
                         <SearchPage
                             pageData={{
                                 title: 'Upcoming Movies',
-                                query: '?=upcoming'
+                                getPageData: getUpcomingMovies,
+                                selector: selectUpcomingMovies
                             }}
                         />
                     </Route>
@@ -62,7 +91,8 @@ const Routes = props => {
                         <SearchPage
                             pageData={{
                                 title: 'Now Playing Movies',
-                                query: '?=now-playing'
+                                getPageData: getNowPlayingMovies,
+                                selector: selectNowPlayingMovies
                             }}
                         />
                     </Route>
@@ -75,7 +105,8 @@ const Routes = props => {
                         <SearchPage
                             pageData={{
                                 title: 'Popular tv shows',
-                                query: '?=popular'
+                                getPageData: getPopularTvShows,
+                                selector: selectPopularTvShows
                             }}
                         />
                     </Route>
@@ -83,7 +114,8 @@ const Routes = props => {
                         <SearchPage
                             pageData={{
                                 title: 'Top Rated tv shows',
-                                query: '?=popular'
+                                getPageData: getTopRatedTvShows,
+                                selector: selectTopRatedTvShows
                             }}
                         />
                     </Route>
@@ -91,15 +123,17 @@ const Routes = props => {
                         <SearchPage
                             pageData={{
                                 title: 'Currently airing tv shows',
-                                query: '?=popular'
+                                getPageData: getAiringNowTvShows,
+                                selector: selectAiringNowTvShows
                             }}
                         />
                     </Route>
-                    <Route path="/tv-shows/airing-today">
+                    <Route path="/tv-shows/latest">
                         <SearchPage
                             pageData={{
-                                title: 'Tv shows airing today',
-                                query: '?=popular'
+                                title: 'Latest Tv Shows',
+                                getPageData: getLatestTvShows,
+                                selector: selectLatestTvShows
                             }}
                         />
                     </Route>
