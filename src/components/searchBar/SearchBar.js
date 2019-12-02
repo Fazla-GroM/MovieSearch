@@ -1,24 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/core';
 import { red, greyLight, greyDark } from '../../themeVar';
+//redux
+import { useDispatch, useSelector } from 'react-redux';
+import { getSearchResults } from '../../redux/search/searchActions';
+import { selectSearchResults } from '../../redux/search/searchSelectors';
 //fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
-import img from '../../assets/bg.jpg';
+//components
+import SearchBarResults from './SearchBarResults';
+//hooks
+import useDebounce from '../../hooks/useDebounce';
 
 const SearchBar = props => {
+    const [userInput, setUserInput] = useState('');
+    const [hasData, setHasData] = useState(false);
+    const dispatch = useDispatch();
+    const searchResults = useSelector(selectSearchResults);
+    const debouncedSearchTerm = useDebounce(userInput, 700);
+
+    useEffect(() => {
+        if (debouncedSearchTerm) {
+            console.log('FETCHAM');
+            dispatch(getSearchResults(encodeURI(debouncedSearchTerm)));
+        }
+    }, [debouncedSearchTerm]);
+
+    useEffect(() => {
+        if (debouncedSearchTerm !== '') {
+            setHasData(true);
+        } else {
+            setHasData(false);
+        }
+    }, [debouncedSearchTerm]);
+
+    const handleSearch = e => {
+        setUserInput(e.target.value);
+    };
+
     return (
         <div css={cssSearchBar}>
-            <div className="holder">
+            <form className="holder">
                 <input
+                    onChange={e => handleSearch(e)}
+                    value={userInput}
                     type="text"
                     placeholder="Search for Movie, Tv Show, Person..."
                 />
                 <button css={cssSearchButton} aria-label="Search">
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
-            </div>
+            </form>
+            {hasData && <SearchBarResults />}
         </div>
     );
 };
@@ -26,70 +60,12 @@ const SearchBar = props => {
 export default SearchBar;
 
 /**
- *<ul css={cssSearchBarResults}>
-                <li>
-                    <div className="bg-image"></div>
-                    <div className="content">
-                        <h5>Movie Title</h5>
-                        <p>this is some movie description</p>
-                    </div>
-                </li>
-                <li>
-                    <div className="bg-image"></div>
-                    <div className="content">
-                        <h5>Movie Title</h5>
-                        <p>this is some movie description</p>
-                    </div>
-                </li>
-                <li>
-                    <div className="bg-image"></div>
-                    <div className="content">
-                        <h5>Movie Title</h5>
-                        <p>this is some movie description</p>
-                    </div>
-                </li>
-            </ul>
+ *
  */
 const breakpoints = [768, 996, 1200];
 const mq = breakpoints.map(
     bp => ` @media only screen and (min-width: ${bp}px)`
 );
-
-const cssSearchBarResults = css({
-    position: 'absolute',
-    backgroundColor: greyDark,
-    top: '5rem',
-    width: '100%',
-
-    '& li': {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '.5rem 0',
-
-        '.bg-image': {
-            backgroundImage: `url(${img})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            width: '10rem',
-            alignSelf: 'stretch'
-        },
-
-        '.content': {
-            //backgroundColor: 'yellow',
-            alignSelf: 'stretch',
-            padding: '0 1rem',
-
-            '& h5': {
-                color: red,
-                fontWeight: '700'
-            },
-            '& p': {
-                color: 'white'
-            }
-        }
-    }
-});
 
 const cssSearchBar = css({
     position: 'relative',
