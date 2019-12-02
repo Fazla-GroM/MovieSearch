@@ -25,7 +25,7 @@ const Footer = props => {
     );
 
     const cssFooter = css({
-        position: 'sticky',
+        position: 'fixed',
         bottom: '0',
         zIndex: '1000',
         width: '100%',

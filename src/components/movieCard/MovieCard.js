@@ -7,7 +7,8 @@ const imgUrl = process.env.IMAGE_URL;
 const Card = ({ data }) => {
     const cssCardImage = css({
         position: 'relative',
-        backgroundImage: `url(${imgUrl}/w342${data?.poster_path})`,
+        backgroundImage: `url(${imgUrl}/w342${data.poster_path ||
+            data.backdrop_path})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         width: '100%',

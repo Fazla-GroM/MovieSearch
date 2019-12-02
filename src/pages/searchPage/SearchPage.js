@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 //components
 import SearchResults from '../../components/searchResults/SearchResults';
+import Loader from '../../components/loader/Loader';
 
 const SearchPage = props => {
     const { title, getPageData, selector } = props.pageData;
@@ -14,7 +15,7 @@ const SearchPage = props => {
     const pageData = useSelector(selector);
     const [isFetching, setIsFetching] = useInfiniteScroll();
     console.log('RERENDERING');
-
+    const [active, setActive] = useState(true);
     useEffect(() => {
         if (!pageData.results.length) {
             dispatch(getPageData(pageData.pageToFetch));
@@ -36,11 +37,7 @@ const SearchPage = props => {
                 {title && <h2>{title}</h2>}
 
                 <SearchResults data={pageData.results} />
-                {isFetching && (
-                    <div style={{ color: 'white', fontSize: '4rem' }}>
-                        Fetching data...
-                    </div>
-                )}
+                {isFetching && <Loader />}
             </div>
         </main>
     );

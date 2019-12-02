@@ -17,7 +17,7 @@ export const selectAiringNowTvShows = createSelector(
     tvShows => tvShows.airingNowTvShows
 );
 
-export const selectLatestTvShows = createSelector(
+export const selectAiringTodayTvShows = createSelector(
     [tvShowsSelector],
-    tvShows => tvShows.latestTvShows
+    tvShows => tvShows.airingTodayTvShows
 );

@@ -2,7 +2,7 @@ import {
     SET_POPULAR_TV_SHOWS,
     SET_TOP_RATED_TV_SHOWS,
     SET_AIRING_NOW_TV_SHOWS,
-    SET_LATEST_TV_SHOWS
+    SET_AIRING_TODAY_TV_SHOWS
 } from './tvShowsTypes';
 
 const initialState = {
@@ -24,7 +24,7 @@ const initialState = {
         totalPages: null,
         results: []
     },
-    latestTvShows: {
+    airingTodayTvShows: {
         currentPage: null,
         pageToFetch: 1,
         totalPages: null,
@@ -72,15 +72,15 @@ const tvShowsReducer = (state = initialState, action) => {
                     ]
                 }
             };
-        case SET_LATEST_TV_SHOWS:
+        case SET_AIRING_TODAY_TV_SHOWS:
             return {
                 ...state,
-                latestTvShows: {
+                airingTodayTvShows: {
                     currentPage: action.payload.currentPage,
                     pageToFetch: action.payload.pageToFetch,
                     totalPages: action.payload.totalPages,
                     results: [
-                        ...state.latestTvShows.results,
+                        ...state.airingTodayTvShows.results,
                         ...action.payload.results
                     ]
                 }

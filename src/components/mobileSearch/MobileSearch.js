@@ -28,7 +28,7 @@ const MobileSearch = props => {
     };
 
     return (
-        <Transition mountOnEnter unmountOnExit in={isNavOpen} timeout={400}>
+        <Transition mountOnEnter unmountOnExit in={isNavOpen} timeout={300}>
             {state => (
                 <div
                     onClick={() => dispatch(setIsNavOpen(false))}

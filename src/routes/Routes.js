@@ -23,13 +23,13 @@ import {
     getPopularTvShows,
     getTopRatedTvShows,
     getAiringNowTvShows,
-    getLatestTvShows
+    getAiringTodayTvShows
 } from '../redux/tvShows/tvShowsActions';
 import {
     selectPopularTvShows,
     selectTopRatedTvShows,
     selectAiringNowTvShows,
-    selectLatestTvShows
+    selectAiringTodayTvShows
 } from '../redux/tvShows/tvShowsSelectors';
 //css transition
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -128,12 +128,12 @@ const Routes = props => {
                             }}
                         />
                     </Route>
-                    <Route path="/tv-shows/latest">
+                    <Route path="/tv-shows/airing-today">
                         <SearchPage
                             pageData={{
-                                title: 'Latest Tv Shows',
-                                getPageData: getLatestTvShows,
-                                selector: selectLatestTvShows
+                                title: 'AiringToday Tv Shows',
+                                getPageData: getAiringTodayTvShows,
+                                selector: selectAiringTodayTvShows
                             }}
                         />
                     </Route>

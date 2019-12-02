@@ -5,6 +5,8 @@ import { red, greyLight, greyDark } from '../../themeVar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
+import img from '../../assets/bg.jpg';
+
 const SearchBar = props => {
     return (
         <div css={cssSearchBar}>
@@ -23,12 +25,74 @@ const SearchBar = props => {
 
 export default SearchBar;
 
+/**
+ *<ul css={cssSearchBarResults}>
+                <li>
+                    <div className="bg-image"></div>
+                    <div className="content">
+                        <h5>Movie Title</h5>
+                        <p>this is some movie description</p>
+                    </div>
+                </li>
+                <li>
+                    <div className="bg-image"></div>
+                    <div className="content">
+                        <h5>Movie Title</h5>
+                        <p>this is some movie description</p>
+                    </div>
+                </li>
+                <li>
+                    <div className="bg-image"></div>
+                    <div className="content">
+                        <h5>Movie Title</h5>
+                        <p>this is some movie description</p>
+                    </div>
+                </li>
+            </ul>
+ */
 const breakpoints = [768, 996, 1200];
 const mq = breakpoints.map(
     bp => ` @media only screen and (min-width: ${bp}px)`
 );
 
+const cssSearchBarResults = css({
+    position: 'absolute',
+    backgroundColor: greyDark,
+    top: '5rem',
+    width: '100%',
+
+    '& li': {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '.5rem 0',
+
+        '.bg-image': {
+            backgroundImage: `url(${img})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            width: '10rem',
+            alignSelf: 'stretch'
+        },
+
+        '.content': {
+            //backgroundColor: 'yellow',
+            alignSelf: 'stretch',
+            padding: '0 1rem',
+
+            '& h5': {
+                color: red,
+                fontWeight: '700'
+            },
+            '& p': {
+                color: 'white'
+            }
+        }
+    }
+});
+
 const cssSearchBar = css({
+    position: 'relative',
     width: '100%',
     display: 'flex',
     alignItems: 'center',
