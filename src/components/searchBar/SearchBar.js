@@ -53,7 +53,7 @@ const SearchBar = props => {
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
             </form>
-            {searchResults.length && (
+            {Boolean(searchResults.length) && (
                 <SearchBarResults results={searchResults} />
             )}
         </div>

@@ -7,7 +7,7 @@ import SearchBarCards from './SearchBarCards';
 const SearchBarResults = ({ results }) => {
     return (
         <ul css={cssSearchBarResults}>
-            {results.length &&
+            {Boolean(results.length) &&
                 results.map(res => {
                     return <SearchBarCards key={res.id} data={res} />;
                 })}
