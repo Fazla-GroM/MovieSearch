@@ -1,20 +1,15 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { red, greyLight, greyDark } from '../../themeVar';
-//redux
-import { useSelector } from 'react-redux';
-import { selectSearchResults } from '../../redux/search/searchSelectors';
 //components
 import SearchBarCards from './SearchBarCards';
 
-const SearchBarResults = props => {
-    const searchResults = useSelector(selectSearchResults);
-
+const SearchBarResults = ({ results }) => {
     return (
         <ul css={cssSearchBarResults}>
-            {searchResults &&
-                searchResults.map(item => {
-                    return <SearchBarCards key={item.id} data={item} />;
+            {results.length &&
+                results.map(res => {
+                    return <SearchBarCards key={res.id} data={res} />;
                 })}
         </ul>
     );

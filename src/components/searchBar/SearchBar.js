@@ -3,7 +3,10 @@ import { css } from '@emotion/core';
 import { red, greyLight, greyDark } from '../../themeVar';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getSearchResults } from '../../redux/search/searchActions';
+import {
+    getSearchResults,
+    clearSearchResults
+} from '../../redux/search/searchActions';
 import { selectSearchResults } from '../../redux/search/searchSelectors';
 //fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,21 +24,19 @@ const SearchBar = props => {
     const debouncedSearchTerm = useDebounce(userInput, 700);
 
     useEffect(() => {
+        handleSearch();
+    }, [debouncedSearchTerm]);
+
+    const handleSearch = () => {
         if (debouncedSearchTerm) {
             console.log('FETCHAM');
             dispatch(getSearchResults(encodeURI(debouncedSearchTerm)));
-        }
-    }, [debouncedSearchTerm]);
-
-    useEffect(() => {
-        if (debouncedSearchTerm !== '') {
-            setHasData(true);
         } else {
-            setHasData(false);
+            dispatch(clearSearchResults([]));
         }
-    }, [debouncedSearchTerm]);
+    };
 
-    const handleSearch = e => {
+    const handleInput = e => {
         setUserInput(e.target.value);
     };
 
@@ -43,7 +44,7 @@ const SearchBar = props => {
         <div css={cssSearchBar}>
             <form className="holder">
                 <input
-                    onChange={e => handleSearch(e)}
+                    onChange={e => handleInput(e)}
                     value={userInput}
                     type="text"
                     placeholder="Search for Movie, Tv Show, Person..."
@@ -52,16 +53,15 @@ const SearchBar = props => {
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
             </form>
-            {hasData && <SearchBarResults />}
+            {searchResults.length && (
+                <SearchBarResults results={searchResults} />
+            )}
         </div>
     );
 };
 
 export default SearchBar;
 
-/**
- *
- */
 const breakpoints = [768, 996, 1200];
 const mq = breakpoints.map(
     bp => ` @media only screen and (min-width: ${bp}px)`

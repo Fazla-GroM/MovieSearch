@@ -1,4 +1,4 @@
-import { SET_SEARCH_RESULTS } from './searchTypes';
+import { SET_SEARCH_RESULTS, CLEAR_SEARCH_RESULTS } from './searchTypes';
 import mainApi from '../api/mainApi';
 
 const apiKey = process.env.API_KEY;
@@ -18,4 +18,11 @@ export const getSearchResults = searchValue => async dispatch => {
     } catch (err) {
         console.log(err);
     }
+};
+
+export const clearSearchResults = data => {
+    return {
+        type: CLEAR_SEARCH_RESULTS,
+        payload: data
+    };
 };
