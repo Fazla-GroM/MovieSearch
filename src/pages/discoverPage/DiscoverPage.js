@@ -2,22 +2,19 @@ import React from 'react';
 import { css } from '@emotion/core';
 import { red } from '../../themeVar';
 //router
-import {
-    Switch,
-    Route,
-    NavLink,
-    useParams,
-    useRouteMatch
-} from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
+//redux
+import { useDispatch, useSelector } from 'react-redux';
+import { discoverMovies } from '../../redux/discover/discoverActions';
 //components
 import DiscoverFilters from '../../components/discoverFilters/DiscoverFilters';
 import SearchResults from '../../components/searchResults/SearchResults';
 
 const DiscoverPage = props => {
-    // let { path, url } = useRouteMatch();
-    // console.log(url + 'URL');console.log(path + 'PATH');
-    console.log('discover');
-    console.log(process.env.API_KEY);
+    const dispatch = useDispatch();
+
+    console.log('discover page');
+
     return (
         <main css={cssDiscoverPage}>
             <div className="container">

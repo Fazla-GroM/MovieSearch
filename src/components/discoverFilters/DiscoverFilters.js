@@ -1,115 +1,132 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/core';
 import { red, greyDark, greyLight } from '../../themeVar';
 //component
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
 
-const sortBy = [
+const sortByData = [
     {
-        value: '?=popDesc',
+        value: '&sort_by=popularity.esc',
         label: 'Popularity Descending'
     },
     {
-        value: '?=popAsc',
+        value: '&sort_by=popularity.asc',
         label: 'Popularity Ascending'
     },
     {
-        value: '?=ratDesc',
-        label: 'Rating Descending'
+        value: '&sort_by=original_title.desc',
+        label: 'Title Descending'
     },
     {
-        value: '?=ratAsc',
-        label: 'Rating Ascending'
+        value: '&sort_by=original_title.asc',
+        label: 'Title Ascending'
     }
 ];
 
-const genres = [
+const genresData = [
     {
-        value: '?=action',
+        value: '&with_genres=28',
         label: 'Action'
     },
     {
-        value: '?=adventure',
+        value: '&with_genres=12',
         label: 'Adventure'
     },
     {
-        value: '?=animation',
+        value: '&with_genres=16',
         label: 'Animation'
     },
     {
-        value: '?=comedy',
+        value: '&with_genres=35',
         label: 'Comedy'
     },
     {
-        value: '?=crime',
+        value: '&with_genres=80',
         label: 'Crime'
     },
     {
-        value: '?=documentary',
+        value: '&with_genres=99',
         label: 'Documentary'
     },
     {
-        value: '?=drama',
+        value: '&with_genres=18',
         label: 'Drama'
     },
     {
-        value: '?=family',
+        value: '&with_genres=10751',
         label: 'Family'
     },
     {
-        value: '?=fantasy',
+        value: '&with_genres=14',
         label: 'Fantasy'
     },
     {
-        value: '?=history',
+        value: '&with_genres=36',
         label: 'History'
     },
     {
-        value: '?=horror',
+        value: '&with_genres=27',
         label: 'Horror'
     },
     {
-        value: '?=music',
+        value: '&with_genres=10402',
         label: 'Music'
     },
     {
-        value: '?=Mistery',
+        value: '&with_genres=9648',
         label: 'Mistery'
     },
     {
-        value: '?=romance',
+        value: '&with_genres=10749',
         label: 'Romance'
     },
     {
-        value: '?=science+fiction',
+        value: '&with_genres=878',
         label: 'Science Fiction'
     },
     {
-        value: '?=tv+movie',
+        value: '&with_genres=10770',
         label: 'TV Movie'
     },
     {
-        value: '?=thriller',
+        value: '&with_genres=53',
         label: 'Thriller'
     },
     {
-        value: '?=war',
+        value: '&with_genres=10752',
         label: 'War'
     },
     {
-        value: '?=western',
+        value: '&with_genres=37',
         label: 'Western'
     }
 ];
 
-const DiscoverFilters = props => {
-    const [year, setYear] = useState('');
+import { useDispatch, useSelector } from 'react-redux';
+import { discoverMovies } from '../../redux/discover/discoverActions';
 
-    const handleChange = e => {
-        const target = e.target;
-        const name = target.name;
-        const value = target.value;
-        setYear(value);
+const DiscoverFilters = props => {
+    const dispatch = useDispatch();
+    const [year, setYear] = useState('');
+    const [sortBy, setSortBy] = useState(sortByData[0]);
+    const [genres, setGenres] = useState('');
+    console.log([sortBy.value, genres.value].join(''));
+    useEffect(() => {
+        dispatch(discoverMovies([sortBy.value, genres.value].join('')));
+    }, [year, sortBy.value, genres.value]);
+
+    console.log(year, sortBy, genres);
+
+    const handleSortBy = selected => {
+        setSortBy(selected);
+    };
+
+    const handleGenres = selected => {
+        setGenres(selected);
+    };
+
+    const handleYear = e => {
+        setYear(e.target.value);
     };
     console.log(year);
     return (
@@ -119,16 +136,23 @@ const DiscoverFilters = props => {
                     <DropdownMenu
                         title="Sort by"
                         hasInitialState={true}
-                        data={sortBy}
+                        data={sortByData}
+                        handleChange={handleSortBy}
+                        value={sortBy}
                     />
                 </li>
                 <li>
-                    <DropdownMenu title="Genres" data={genres} />
+                    <DropdownMenu
+                        title="Genres"
+                        data={genresData}
+                        handleChange={handleGenres}
+                        value={genres}
+                    />
                 </li>
                 <li>
                     <h5 css={cssTitle}>Year:</h5>
                     <input
-                        onChange={handleChange}
+                        onChange={handleYear}
                         css={cssYear}
                         type="text"
                         maxLength="4"

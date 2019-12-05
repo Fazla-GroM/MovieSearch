@@ -7,42 +7,19 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 //components
 import Select from 'react-select';
 
-const options = [
-    {
-        value: '?=popDesc',
-        label: 'Popularity Descending'
-    },
-    {
-        value: '?=popAsc',
-        label: 'Popularity Ascending'
-    },
-    {
-        value: '?=ratDesc',
-        label: 'Rating Descending'
-    },
-    {
-        value: '?=ratAsc',
-        label: 'Rating Ascending'
-    }
-];
-
-const DropdownMenu = ({ title, data, hasInitialState }) => {
-    const [selectedOption, setSelectedOption] = useState(
-        hasInitialState ? data[0] : null
-    );
-    //console.log(selectedOption);
-
-    const handleChange = selected => {
-        //console.log(selected.value);
-        setSelectedOption(selected);
-    };
-
+const DropdownMenu = ({
+    title,
+    data,
+    hasInitialState,
+    handleChange,
+    value
+}) => {
     return (
         <>
             <h5 css={cssTitle}>{title}:</h5>
             <Select
                 onChange={handleChange}
-                value={selectedOption}
+                value={value}
                 options={data}
                 styles={cssDropdown}
             />

@@ -14,8 +14,9 @@ const SearchPage = props => {
     const dispatch = useDispatch();
     const pageData = useSelector(selector);
     const [isFetching, setIsFetching] = useInfiniteScroll();
-    console.log('RERENDERING');
-    const [active, setActive] = useState(true);
+
+    console.log('SEARCH PAGE');
+
     useEffect(() => {
         if (!pageData.results.length) {
             dispatch(getPageData(pageData.pageToFetch));
