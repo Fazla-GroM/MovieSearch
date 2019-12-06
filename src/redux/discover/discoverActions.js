@@ -1,9 +1,4 @@
-import {
-    SET_MOVIE,
-    SET_TV_SHOWS,
-    CLEAR_MOVIES,
-    CLEAR_TV_SHOWS
-} from './discoverTypes';
+import {SET_MOVIES} from './discoverTypes'
 import mainApi from '../api/mainApi';
 
 const apiKey = process.env.API_KEY;
@@ -19,7 +14,7 @@ export const discoverMovies = page => async dispatch => {
         );
         console.log(res);
         dispatch({
-            type: SET_MOVIE,
+            type: SET_MOVIES,
             payload: {
                 currentPage: res.data.page,
                 pageToFetch: res.data.page + 1,

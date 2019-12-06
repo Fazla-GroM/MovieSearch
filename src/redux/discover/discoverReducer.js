@@ -1,5 +1,5 @@
 import {
-    SET_MOVIE,
+    SET_MOVIES,
     SET_TV_SHOWS,
     CLEAR_MOVIES,
     CLEAR_TV_SHOWS
@@ -12,7 +12,6 @@ const initialState = {
         totalPages: null,
         results: []
     },
-
     tvShows: {
         currentPage: null,
         pageToFetch: 1,
@@ -23,7 +22,7 @@ const initialState = {
 
 const discoverReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_MOVIE:
+        case SET_MOVIES:
             return {
                 ...state,
                 movies: {
@@ -49,22 +48,22 @@ const discoverReducer = (state = initialState, action) => {
                     ]
                 }
             };
-        case CLEAR_MOVIES:
-            return {
-                ...state,
-                movies: {
-                    ...state.movies,
-                    ...initalState.movies
-                }
-            };
-        case CLEAR_TV_SHOWS:
-            return {
-                ...state,
-                tvShows: {
-                    ...state.tvShows,
-                    ...initalState.tvShows
-                }
-            };
+        // case CLEAR_MOVIES:
+        //     return {
+        //         ...state,
+        //         movies: {
+        //             ...state.movies,
+        //             ...initalState.movies
+        //         }
+        //     };
+        // case CLEAR_TV_SHOWS:
+        //     return {
+        //         ...state,
+        //         tvShows: {
+        //             ...state.tvShows,
+        //             ...initalState.tvShows
+        //         }
+        //     };
         default:
             return state;
     }
