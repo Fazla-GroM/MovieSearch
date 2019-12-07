@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { css } from '@emotion/core';
-import { red, greyLight, greyDark } from '../../themeVar';
+import React, { useState, useEffect } from "react";
+import { css } from "@emotion/core";
+import { red, greyLight, greyDark } from "../../themeVar";
 //redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 //hooks
-import useInfiniteScroll from '../../hooks/useInfiniteScroll';
+import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 //components
-import SearchResults from '../../components/searchResults/SearchResults';
-import Loader from '../../components/loader/Loader';
+import SearchResults from "../../components/searchResults/SearchResults";
+import Loader from "../../components/loader/Loader";
 
+import { useParams } from "react-router-dom";
 const SearchPage = props => {
     const { title, getPageData, selector } = props.pageData;
     const dispatch = useDispatch();
     const pageData = useSelector(selector);
     const [isFetching, setIsFetching] = useInfiniteScroll();
 
-    console.log('SEARCH PAGE');
+    console.log("SEARCH PAGE");
+    console.log(useParams());
 
     useEffect(() => {
         if (!pageData.results.length) {
@@ -27,14 +29,14 @@ const SearchPage = props => {
 
         if (isFetching && pageData.currentPage !== pageData.totalPages) {
             dispatch(getPageData(pageData.pageToFetch)).then(() =>
-                setIsFetching(false)
+                setIsFetching(false),
             );
         }
     }, [isFetching]);
 
     return (
         <main css={cssSearchPage}>
-            <div className="container">
+            <div className='container'>
                 {title && <h2>{title}</h2>}
 
                 <SearchResults data={pageData.results} />
@@ -49,20 +51,20 @@ export default SearchPage;
 //styles
 const breakpoints = [768, 996, 1200];
 const mq = breakpoints.map(
-    bp => ` @media only screen and (min-width: ${bp}px)`
+    bp => ` @media only screen and (min-width: ${bp}px)`,
 );
 
 const cssSearchPage = css({
-    '.container': {
-        paddingTop: '7rem',
-        paddingBottom: '5rem'
+    ".container": {
+        paddingTop: "7rem",
+        paddingBottom: "5rem",
     },
 
-    '& h2': {
+    "& h2": {
         color: red,
-        fontWeight: '700',
-        fontSize: '3rem',
-        textAlign: 'center',
-        marginBottom: '3rem'
-    }
+        fontWeight: "700",
+        fontSize: "3rem",
+        textAlign: "center",
+        marginBottom: "3rem",
+    },
 });

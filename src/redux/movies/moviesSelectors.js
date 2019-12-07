@@ -1,23 +1,28 @@
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect";
 
 const moviesSelector = state => state.movies;
 
+export const selectMovie = createSelector(
+    [moviesSelector],
+    movies => movies.movie,
+);
+
 export const selectPopularMovies = createSelector(
     [moviesSelector],
-    movies => movies.popularMovies
+    movies => movies.popularMovies,
 );
 
 export const selectTopRatedMovies = createSelector(
     [moviesSelector],
-    movies => movies.topRatedMovies
+    movies => movies.topRatedMovies,
 );
 
 export const selectUpcomingMovies = createSelector(
     [moviesSelector],
-    movies => movies.upcomingMovies
+    movies => movies.upcomingMovies,
 );
 
 export const selectNowPlayingMovies = createSelector(
     [moviesSelector],
-    movies => movies.nowPlayingMovies
+    movies => movies.nowPlayingMovies,
 );

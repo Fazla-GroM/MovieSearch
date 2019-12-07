@@ -1,39 +1,48 @@
 import {
+    SET_MOVIE,
     SET_POPULAR_MOVIES,
     SET_TOP_RATED_MOVIES,
     SET_UPCOMING_MOVIES,
-    SET_NOW_PLAYING_MOVIES
-} from './moviesTypes';
+    SET_NOW_PLAYING_MOVIES,
+} from "./moviesTypes";
 
 const initialState = {
+    movie: {},
+
     popularMovies: {
         currentPage: null,
         pageToFetch: 1,
         totalPages: null,
-        results: []
+        results: [],
     },
     topRatedMovies: {
         currentPage: null,
         pageToFetch: 1,
         totalPages: null,
-        results: []
+        results: [],
     },
     upcomingMovies: {
         currentPage: null,
         pageToFetch: 1,
         totalPages: null,
-        results: []
+        results: [],
     },
     nowPlayingMovies: {
         currentPage: null,
         pageToFetch: 1,
         totalPages: null,
-        results: []
-    }
+        results: [],
+    },
 };
 
 const moviesReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_MOVIE: {
+            return {
+                ...state,
+                movie: { ...action.payload },
+            };
+        }
         case SET_POPULAR_MOVIES:
             return {
                 ...state,
@@ -43,9 +52,9 @@ const moviesReducer = (state = initialState, action) => {
                     totalPages: action.payload.totalPages,
                     results: [
                         ...state.popularMovies.results,
-                        ...action.payload.results
-                    ]
-                }
+                        ...action.payload.results,
+                    ],
+                },
             };
         case SET_TOP_RATED_MOVIES:
             return {
@@ -56,9 +65,9 @@ const moviesReducer = (state = initialState, action) => {
                     totalPages: action.payload.totalPages,
                     results: [
                         ...state.topRatedMovies.results,
-                        ...action.payload.results
-                    ]
-                }
+                        ...action.payload.results,
+                    ],
+                },
             };
         case SET_UPCOMING_MOVIES:
             return {
@@ -69,9 +78,9 @@ const moviesReducer = (state = initialState, action) => {
                     totalPages: action.payload.totalPages,
                     results: [
                         ...state.upcomingMovies.results,
-                        ...action.payload.results
-                    ]
-                }
+                        ...action.payload.results,
+                    ],
+                },
             };
         case SET_NOW_PLAYING_MOVIES:
             return {
@@ -82,9 +91,9 @@ const moviesReducer = (state = initialState, action) => {
                     totalPages: action.payload.totalPages,
                     results: [
                         ...state.nowPlayingMovies.results,
-                        ...action.payload.results
-                    ]
-                }
+                        ...action.payload.results,
+                    ],
+                },
             };
 
         default:

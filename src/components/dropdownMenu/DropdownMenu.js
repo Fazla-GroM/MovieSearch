@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { css } from '@emotion/core';
-import { red, greyDark, greyLight } from '../../themeVar';
+import React, { useState } from "react";
+import { css } from "@emotion/core";
+import { red, greyDark, greyLight } from "../../themeVar";
 //fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 //components
-import Select from 'react-select';
+import Select from "react-select";
 
 const DropdownMenu = ({
     title,
     data,
     hasInitialState,
     handleChange,
-    value
+    value,
 }) => {
     return (
         <>
@@ -30,61 +30,62 @@ const DropdownMenu = ({
 export default DropdownMenu;
 
 const cssTitle = css({
-    color: 'white',
-    paddingBottom: '.5rem'
+    color: "white",
+    paddingBottom: ".5rem",
 });
 
 //styles
 const cssDropdown = {
     container: (provided, state) => ({
         ...provided,
-        outline: 'none',
-        border: 'none',
-        width: '20rem'
+        outline: "none",
+        border: "none",
+        width: "20rem",
     }),
     singleValue: (provided, state) => ({
         ...provided,
-        color: 'white',
-        fontSize: '1.4rem'
+        color: "white",
+        fontSize: "1.4rem",
     }),
     control: (provided, state) => ({
         ...provided,
-        borderColor: 'none',
-        backgroundColor: 'transparent',
+        borderColor: "none",
+        backgroundColor: "transparent",
         border: `1px solid ${red}`,
-        outline: 'none',
+        outline: "none",
 
-        '&:hover': {
+        "&:hover": {
             borderColor: red,
-            boxShadow: `0px 0px 5px 0px ${red}`
-        }
+            boxShadow: `0px 0px 5px 0px ${red}`,
+        },
     }),
     valueContainer: (provided, state) => ({
         ...provided,
         backgroundColor: greyDark,
-        color: 'white'
+        color: "white",
     }),
     indicatorsContainer: (provided, state) => ({
         ...provided,
         backgroundColor: greyDark,
 
-        '& svg': {
-            color: red
-        }
+        "& svg": {
+            color: red,
+        },
     }),
     indicatorSeparator: (provided, state) => ({
         ...provided,
-        backgroundColor: red
+        backgroundColor: red,
     }),
     menu: (provided, state) => ({
         ...provided,
-        backgroundColor: greyDark
+        backgroundColor: greyDark,
+        zIndex: "1000",
     }),
     option: (provided, state) => ({
         ...provided,
-        color: 'white',
-        fontSize: '1.4rem',
+        color: "white",
+        fontSize: "1.4rem",
         backgroundColor: (state.isFocused || state.isSelected) && greyLight,
-        cursor: 'pointer'
-    })
+        cursor: "pointer",
+    }),
 };

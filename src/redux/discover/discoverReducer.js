@@ -1,23 +1,25 @@
 import {
     SET_MOVIES,
+    SET_MOVIES_ON_SCROLL,
     SET_TV_SHOWS,
+    SET_TV_SHOWS_ON_SCROLL,
     CLEAR_MOVIES,
-    CLEAR_TV_SHOWS
-} from './discoverTypes';
+    CLEAR_TV_SHOWS,
+} from "./discoverTypes";
 
 const initialState = {
     movies: {
         currentPage: null,
         pageToFetch: 1,
         totalPages: null,
-        results: []
+        results: [],
     },
     tvShows: {
         currentPage: null,
         pageToFetch: 1,
         totalPages: null,
-        results: []
-    }
+        results: [],
+    },
 };
 
 const discoverReducer = (state = initialState, action) => {
@@ -29,11 +31,21 @@ const discoverReducer = (state = initialState, action) => {
                     currentPage: action.payload.currentPage,
                     pageToFetch: action.payload.pageToFetch,
                     totalPages: action.payload.totalPages,
+                    results: [...action.payload.results],
+                },
+            };
+        case SET_MOVIES_ON_SCROLL:
+            return {
+                ...state,
+                movies: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
                     results: [
                         ...state.movies.results,
-                        ...action.payload.results
-                    ]
-                }
+                        ...action.payload.results,
+                    ],
+                },
             };
         case SET_TV_SHOWS:
             return {
@@ -42,11 +54,21 @@ const discoverReducer = (state = initialState, action) => {
                     currentPage: action.payload.currentPage,
                     pageToFetch: action.payload.pageToFetch,
                     totalPages: action.payload.totalPages,
+                    results: [...action.payload.results],
+                },
+            };
+        case SET_TV_SHOWS_ON_SCROLL:
+            return {
+                ...state,
+                tvShows: {
+                    currentPage: action.payload.currentPage,
+                    pageToFetch: action.payload.pageToFetch,
+                    totalPages: action.payload.totalPages,
                     results: [
                         ...state.tvShows.results,
-                        ...action.payload.results
-                    ]
-                }
+                        ...action.payload.results,
+                    ],
+                },
             };
         // case CLEAR_MOVIES:
         //     return {

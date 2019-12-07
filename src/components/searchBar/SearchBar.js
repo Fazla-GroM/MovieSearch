@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { css } from '@emotion/core';
-import { red, greyLight, greyDark } from '../../themeVar';
+import React, { useState, useEffect } from "react";
+import { css } from "@emotion/core";
+import { red, greyLight, greyDark } from "../../themeVar";
 //redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import {
     getSearchResults,
-    clearSearchResults
-} from '../../redux/search/searchActions';
-import { selectSearchResults } from '../../redux/search/searchSelectors';
+    clearSearchResults,
+} from "../../redux/search/searchActions";
+import { selectSearchResults } from "../../redux/search/searchSelectors";
 //fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 //components
-import SearchBarResults from './SearchBarResults';
+import SearchBarResults from "./SearchBarResults";
 //hooks
-import useDebounce from '../../hooks/useDebounce';
+import useDebounce from "../../hooks/useDebounce";
 
 const SearchBar = props => {
-    const [userInput, setUserInput] = useState('');
-    const [hasData, setHasData] = useState(false);
+    const [userInput, setUserInput] = useState("");
     const dispatch = useDispatch();
     const searchResults = useSelector(selectSearchResults);
     const debouncedSearchTerm = useDebounce(userInput, 700);
@@ -29,7 +28,7 @@ const SearchBar = props => {
 
     const handleSearch = () => {
         if (debouncedSearchTerm) {
-            console.log('FETCHAM');
+            console.log("FETCHAM");
             dispatch(getSearchResults(encodeURI(debouncedSearchTerm)));
         } else {
             dispatch(clearSearchResults([]));
@@ -42,14 +41,14 @@ const SearchBar = props => {
 
     return (
         <div css={cssSearchBar}>
-            <form className="holder">
+            <form className='holder'>
                 <input
                     onChange={e => handleInput(e)}
                     value={userInput}
-                    type="text"
-                    placeholder="Search for Movie, Tv Show, Person..."
+                    type='text'
+                    placeholder='Search for Movie, Tv Show, Person...'
                 />
-                <button css={cssSearchButton} aria-label="Search">
+                <button css={cssSearchButton} aria-label='Search'>
                     <FontAwesomeIcon icon={faSearch} />
                 </button>
             </form>
@@ -64,69 +63,69 @@ export default SearchBar;
 
 const breakpoints = [768, 996, 1200];
 const mq = breakpoints.map(
-    bp => ` @media only screen and (min-width: ${bp}px)`
+    bp => ` @media only screen and (min-width: ${bp}px)`,
 );
 
 const cssSearchBar = css({
-    position: 'relative',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '1rem 0',
+    position: "relative",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "1rem 0",
 
     [mq[1]]: {
-        display: 'none'
+        display: "none",
     },
 
-    '.holder': {
-        width: '70%',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+    ".holder": {
+        width: "70%",
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
 
-        '& input': {
-            width: '100%',
+        "& input": {
+            width: "100%",
             backgroundColor: greyLight,
-            margin: '0',
-            padding: '.4rem',
+            margin: "0",
+            padding: ".4rem",
             border: `1px solid transparent`,
-            borderRadius: '.2rem',
-            outline: 'none',
-            fontFamily: 'inherit',
-            color: 'white',
-            transition: 'all .3s ease-in-out',
+            borderRadius: ".2rem",
+            outline: "none",
+            fontFamily: "inherit",
+            color: "white",
+            transition: "all .3s ease-in-out",
 
-            '&:focus': {
+            "&:focus": {
                 border: `1px solid ${red}`,
                 boxShadow: `0px 0px 5px 0px ${red}`,
 
-                '&::placeholder': {
-                    color: 'transparent'
-                }
+                "&::placeholder": {
+                    color: "transparent",
+                },
             },
 
-            '&::placeholder': {
-                fontSize: '1rem',
-                transition: 'color .4s'
-            }
-        }
-    }
+            "&::placeholder": {
+                fontSize: "1rem",
+                transition: "color .4s",
+            },
+        },
+    },
 });
 
 const cssSearchButton = css({
-    position: 'absolute',
-    top: '50%',
-    right: '.5rem',
-    transform: 'translateY(-50%)',
-    margin: '0',
-    padding: '0',
-    outline: 'none',
-    backgroundColor: 'transparent',
-    border: 'none',
+    position: "absolute",
+    top: "50%",
+    right: ".5rem",
+    transform: "translateY(-50%)",
+    margin: "0",
+    padding: "0",
+    outline: "none",
+    backgroundColor: "transparent",
+    border: "none",
 
-    '& svg': {
-        color: greyDark
-    }
+    "& svg": {
+        color: greyDark,
+    },
 });
