@@ -5,8 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 
 const imgUrl = process.env.IMAGE_URL;
 
-const Card = ({ data }) => {
+const Card = ({ data, path }) => {
     const location = useLocation();
+    console.log(location);
 
     const cssCardImage = css({
         position: "relative",
@@ -23,7 +24,7 @@ const Card = ({ data }) => {
         <Link
             css={cssCard}
             to={{
-                pathname: `${location.pathname}/${data.id}`,
+                pathname: `${path || location.pathname}/${data.id}`,
                 state: { id: data.id },
             }}
         >
@@ -76,6 +77,7 @@ const cssCard = css({
     height: "45rem",
     position: "relative",
     overflow: "hidden",
+    display: "block",
 
     [mq[2]]: {
         "&:hover": {

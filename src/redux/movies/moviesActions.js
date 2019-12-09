@@ -18,7 +18,7 @@ export const getMovie = id => async dispatch => {
     let res;
     try {
         res = await mainApi.get(
-            `${singleMovie}/${id}?api_key=${apiKey}&language=en-US`,
+            `${singleMovie}/${id}?api_key=${apiKey}&language=en-US&append_to_response=videos,images,credits,reviews`,
         );
         dispatch({
             type: SET_MOVIE,

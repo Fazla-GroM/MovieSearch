@@ -8,6 +8,8 @@ import { selectMovie } from "../../redux/movies/moviesSelectors";
 
 const imgUrl = process.env.IMAGE_URL;
 
+/// to do remove image from containre and all content
+
 const MovieDetailsPage = props => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -22,16 +24,35 @@ const MovieDetailsPage = props => {
             movie.backdrop_path})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        width: "100%",
-        height: "100%",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        width: "100vw",
+        height: "80vh",
+        backfaceVisibility: "hidden",
+        overflow: "hidden",
     });
 
     return (
         <main css={cssMovieDetailsPage}>
             <div className='container'>
-                <h2>{movie.original_title}</h2>
                 <section css={cssContent}>
                     <div css={cssPosterImage} />
+                    <div css={cssAbout}>
+                        <h2>
+                            {movie.title || movie.original_title}
+                            {movie.tagline && <span>{movie.tagline}</span>}
+                        </h2>
+                        {movie.homepage && (
+                            <ul className='homepage'>
+                                <li>Homepage</li>
+                                <li>
+                                    <a href={movie.homepage}>
+                                        {movie.homepage}
+                                    </a>
+                                </li>
+                            </ul>
+                        )}
+                    </div>
                 </section>
             </div>
         </main>
@@ -45,14 +66,6 @@ const cssMovieDetailsPage = css({
         paddingTop: "7rem",
         paddingBottom: "5rem",
     },
-
-    "& h2": {
-        color: red,
-        fontWeight: "700",
-        fontSize: "3rem",
-        textAlign: "center",
-        marginBottom: "3rem",
-    },
 });
 
 const cssContent = css({
@@ -60,4 +73,52 @@ const cssContent = css({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
+});
+
+const cssAbout = css({
+    "& h2": {
+        color: red,
+        fontWeight: "700",
+        fontSize: "3rem",
+        textAlign: "center",
+        margin: "3rem 0",
+
+        "& span": {
+            display: "block",
+            color: "white",
+            fontSize: "1.6rem",
+        },
+    },
+
+    ".homepage": {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        color: red,
+        textAlign: "left",
+
+        "& > :first-child": {
+            fontWeight: "700",
+        },
+
+        "& li": {
+            width: "100%",
+            textAlign: "left",
+        },
+
+        "& a": {
+            color: "white",
+            paddingBottom: ".5rem",
+            borderBottom: `1px solid ${red}`,
+            textDecoration: "none",
+            fontSize: "1.4rem",
+            textAlign: "center",
+            transition: "color .4s ease-in-out",
+
+            "&:hover": {
+                color: red,
+            },
+        },
+    },
 });

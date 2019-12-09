@@ -1,13 +1,13 @@
-import React from 'react';
-import { css } from '@emotion/core';
-import { red, lightGrey } from '../../themeVar';
+import React from "react";
+import { css } from "@emotion/core";
+import { red, lightGrey } from "../../themeVar";
 //components
-import Swiper from 'react-id-swiper';
-import Card from '../movieCard/MovieCard';
+import Swiper from "react-id-swiper";
+import Card from "../movieCard/MovieCard";
 //swiper css
-import 'swiper/css/swiper.css';
+import "swiper/css/swiper.css";
 
-const CustomSwiper = ({ data }) => {
+const CustomSwiper = ({ data, path }) => {
     const params = {
         slidesPerView: 1,
         // centeredSlides: true,
@@ -18,42 +18,42 @@ const CustomSwiper = ({ data }) => {
         //     dynamicBullets: true
         // },
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
         },
         breakpoints: {
             640: {
-                slidesPerView: 2
+                slidesPerView: 2,
             },
             1024: {
-                slidesPerView: 2
+                slidesPerView: 2,
             },
             1200: {
-                slidesPerView: 4
-            }
-        }
+                slidesPerView: 4,
+            },
+        },
     };
 
     const breakpoints = [478, 768, 1024, 1200];
     const mq = breakpoints.map(
-        bp => ` @media only screen and (max-width: ${bp}px)`
+        bp => ` @media only screen and (max-width: ${bp}px)`,
     );
 
     const cssSwiper = css({
-        paddingBottom: '2rem',
+        paddingBottom: "2rem",
 
-        '.swiper-container': {
+        ".swiper-container": {
             //paddingTop: '1rem',
             //paddingBottom: '4rem'
         },
 
-        '.swiper-wrapper': {
-            boxSizing: 'border-box'
+        ".swiper-wrapper": {
+            boxSizing: "border-box",
         },
 
-        '.swiper-button-next, .swiper-button-prev': {
-            color: red
-        }
+        ".swiper-button-next, .swiper-button-prev": {
+            color: red,
+        },
     });
 
     return (
@@ -63,7 +63,7 @@ const CustomSwiper = ({ data }) => {
                     {data.map(item => {
                         return (
                             <div key={item?.id}>
-                                <Card data={item}></Card>
+                                <Card path={path} data={item}></Card>
                             </div>
                         );
                     })}

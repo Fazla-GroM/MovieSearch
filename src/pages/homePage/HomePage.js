@@ -1,30 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 //redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import {
     getNowPlayingMovies,
-    getTopRatedMovies
-} from '../../redux/movies/moviesActions';
+    getTopRatedMovies,
+} from "../../redux/movies/moviesActions";
 import {
     selectNowPlayingMovies,
-    selectTopRatedMovies
-} from '../../redux/movies/moviesSelectors';
+    selectTopRatedMovies,
+} from "../../redux/movies/moviesSelectors";
 import {
     getTopRatedTvShows,
-    getAiringNowTvShows
-} from '../../redux/tvShows/tvShowsActions';
+    getAiringNowTvShows,
+} from "../../redux/tvShows/tvShowsActions";
 import {
     selectTopRatedTvShows,
-    selectAiringNowTvShows
-} from '../../redux/tvShows/tvShowsSelectors';
+    selectAiringNowTvShows,
+} from "../../redux/tvShows/tvShowsSelectors";
 
 //sections
-import HomePageFeatures from './homePageSections/HomePageFeatures';
-import HomePageTrending from './homePageSections/HomePageTrending';
-import HomePageTestimonials from './homePageSections/HomePageTestimonials';
+import HomePageFeatures from "./homePageSections/HomePageFeatures";
+import HomePageTrending from "./homePageSections/HomePageTrending";
+import HomePageTestimonials from "./homePageSections/HomePageTestimonials";
 //components
-import HeroBox from '../../components/heroBox/HeroBox';
-import PoweredBy from '../../components/poweredBy/PoweredBy';
+import HeroBox from "../../components/heroBox/HeroBox";
+import PoweredBy from "../../components/poweredBy/PoweredBy";
 
 const HomePage = props => {
     const dispatch = useDispatch();
@@ -50,15 +50,19 @@ const HomePage = props => {
             <HeroBox />
             <HomePageFeatures />
             <HomePageTrending
-                movieTitle="In Theaters"
-                tvTitle="On TV"
+                moviePath='movies/now-playing'
+                tvPath='tv-shows/on-tv'
+                movieTitle='In Theaters'
+                tvTitle='On TV'
                 movieData={moviesInTheatres.results}
                 tvShowData={nowPlayingTvShows.results}
             />
             <HomePageTestimonials />
             <HomePageTrending
-                movieTitle="Popular Movies"
-                tvTitle="Popular TV Shows"
+                moviePath='movies/popular'
+                tvPath='tv-shows/popular'
+                movieTitle='Popular Movies'
+                tvTitle='Popular TV Shows'
                 movieData={topRatedMovies.results}
                 tvShowData={topRatedTvShows.results}
             />
