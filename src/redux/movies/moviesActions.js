@@ -1,5 +1,6 @@
 import {
     SET_MOVIE,
+    SET_CLEAR_MOVIE,
     SET_POPULAR_MOVIES,
     SET_TOP_RATED_MOVIES,
     SET_UPCOMING_MOVIES,
@@ -18,7 +19,7 @@ export const getMovie = id => async dispatch => {
     let res;
     try {
         res = await mainApi.get(
-            `${singleMovie}/${id}?api_key=${apiKey}&language=en-US&append_to_response=videos,images,credits,reviews`,
+            `${singleMovie}/${id}?api_key=${apiKey}&language=en-US&append_to_response=videos,images,credits,reviews,external_ids`,
         );
         dispatch({
             type: SET_MOVIE,
@@ -27,6 +28,13 @@ export const getMovie = id => async dispatch => {
     } catch (err) {
         console.log(err);
     }
+};
+
+export const clearMovie = () => {
+    return {
+        type: SET_CLEAR_MOVIE,
+        payload: {},
+    };
 };
 
 export const getPopularMovies = page => async dispatch => {

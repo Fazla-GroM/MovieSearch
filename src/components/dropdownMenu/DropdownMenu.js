@@ -7,13 +7,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 //components
 import Select from "react-select";
 
-const DropdownMenu = ({
-    title,
-    data,
-    hasInitialState,
-    handleChange,
-    value,
-}) => {
+const DropdownMenu = ({ title, data, handleChange, value }) => {
     return (
         <>
             <h5 css={cssTitle}>{title}:</h5>

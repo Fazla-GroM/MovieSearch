@@ -1,5 +1,6 @@
 import {
     SET_MOVIE,
+    SET_CLEAR_MOVIE,
     SET_POPULAR_MOVIES,
     SET_TOP_RATED_MOVIES,
     SET_UPCOMING_MOVIES,
@@ -38,6 +39,13 @@ const initialState = {
 const moviesReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_MOVIE: {
+            return {
+                ...state,
+                movie: { ...action.payload },
+            };
+        }
+
+        case SET_CLEAR_MOVIE: {
             return {
                 ...state,
                 movie: { ...action.payload },

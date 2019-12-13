@@ -20,7 +20,6 @@ const DiscoverFilters = ({
                 <li>
                     <DropdownMenu
                         title='Sort by'
-                        hasInitialState={true}
                         data={sortByFilters}
                         handleChange={handleSortBy}
                         value={sortByValue}

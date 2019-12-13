@@ -4,8 +4,6 @@ import { red, lightGrey } from "../../themeVar";
 //components
 import Swiper from "react-id-swiper";
 import Card from "../movieCard/MovieCard";
-//swiper css
-import "swiper/css/swiper.css";
 
 const CustomSwiper = ({ data, path }) => {
     const params = {
