@@ -7,7 +7,7 @@ const imgUrl = process.env.IMAGE_URL;
 
 const Card = ({ data, path }) => {
     const location = useLocation();
-    console.log(location);
+    //console.log(location);
 
     const cssCardImage = css({
         position: "relative",

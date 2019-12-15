@@ -10,6 +10,7 @@ import mainApi from "../api/mainApi";
 
 const apiKey = process.env.API_KEY;
 const singleMovie = process.env.GET_MOVIE;
+const movieCollection = process.env.GET_MOVIE_COLLECTION;
 const popularMovies = process.env.GET_POPULAR_MOVIES;
 const topRatedMovies = process.env.GET_TOP_RATED_MOVIES;
 const upcomingMovies = process.env.GET_UPCOMING_MOVIES;
@@ -17,14 +18,25 @@ const nowPlayingMovies = process.env.GET_NOW_PLAYING_MOVIES;
 
 export const getMovie = id => async dispatch => {
     let res;
+    let collection;
     try {
         res = await mainApi.get(
             `${singleMovie}/${id}?api_key=${apiKey}&language=en-US&append_to_response=videos,images,credits,reviews,external_ids`,
         );
-        dispatch({
-            type: SET_MOVIE,
-            payload: res.data,
-        });
+        try {
+            if (res.data.belongs_to_collection) {
+                collection = await mainApi.get(
+                    `${movieCollection}/${res.data.belongs_to_collection.id}?api_key=${apiKey}&language=en-US`,
+                );
+            }
+        } finally {
+            dispatch({
+                type: SET_MOVIE,
+                payload: { ...res.data, collection: collection.data },
+            });
+        }
+
+        console.log("col", collection);
     } catch (err) {
         console.log(err);
     }
