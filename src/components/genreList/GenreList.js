@@ -6,14 +6,16 @@ import { Link } from "react-router-dom";
 const GenreList = ({ data }) => {
     return (
         <section css={cssGenreList}>
-            <h4>Genres</h4>
-            <ul css={cssList}>
-                {data?.map(item => (
-                    <li key={item.id}>
-                        <Link to='/discover/movies'>{item.name}</Link>
-                    </li>
-                ))}
-            </ul>
+            <div className='container'>
+                <h4>Genres</h4>
+                <ul css={cssList}>
+                    {data?.map(item => (
+                        <li key={item.id}>
+                            <Link to='/discover/movies'>{item.name}</Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </section>
     );
 };

@@ -4,25 +4,27 @@ import { red } from "../../themeVar";
 
 const FinancesList = ({ budget, revenue }) => {
     return (
-        <div css={cssFinancesList}>
-            <h4>Finances</h4>
-            <ul css={cssList}>
-                {Boolean(budget) && (
-                    <li>
-                        <span>Budget:</span>
-                        {budget}
-                        <span> $</span>
-                    </li>
-                )}
-                {Boolean(revenue) && (
-                    <li>
-                        <span>Revenue:</span>
-                        {revenue}
-                        <span> $</span>
-                    </li>
-                )}
-            </ul>
-        </div>
+        <section css={cssFinancesList}>
+            <div className='container'>
+                <h4>Finances</h4>
+                <ul css={cssList}>
+                    {Boolean(budget) && (
+                        <li>
+                            <span>Budget:</span>
+                            {budget}
+                            <span> $</span>
+                        </li>
+                    )}
+                    {Boolean(revenue) && (
+                        <li>
+                            <span>Revenue:</span>
+                            {revenue}
+                            <span> $</span>
+                        </li>
+                    )}
+                </ul>
+            </div>
+        </section>
     );
 };
 

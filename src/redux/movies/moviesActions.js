@@ -19,6 +19,7 @@ const nowPlayingMovies = process.env.GET_NOW_PLAYING_MOVIES;
 export const getMovie = id => async dispatch => {
     let res;
     let collection;
+
     try {
         res = await mainApi.get(
             `${singleMovie}/${id}?api_key=${apiKey}&language=en-US&append_to_response=videos,images,credits,reviews,external_ids`,
@@ -32,7 +33,10 @@ export const getMovie = id => async dispatch => {
         } finally {
             dispatch({
                 type: SET_MOVIE,
-                payload: { ...res.data, collection: collection.data },
+                payload: {
+                    ...res.data,
+                    collection: collection?.data ? collection.data : null,
+                },
             });
         }
 

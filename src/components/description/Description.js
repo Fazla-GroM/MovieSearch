@@ -4,10 +4,12 @@ import { red } from "../../themeVar";
 
 const Description = ({ data }) => {
     return (
-        <div css={cssDescription}>
-            <h4>Overview</h4>
-            <ul css={cssList}>{data && <li>{data}</li>}</ul>
-        </div>
+        <section css={cssDescription}>
+            <div className='container'>
+                <h4>Overview</h4>
+                <ul css={cssList}>{data && <li>{data}</li>}</ul>
+            </div>
+        </section>
     );
 };
 

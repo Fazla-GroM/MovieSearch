@@ -13,78 +13,76 @@ import {
 
 const SocialLinks = ({ data, homepage }) => {
     return (
-        <div css={cssSocialLinks}>
-            <h4>Social</h4>
-            <ul css={cssList}>
-                {homepage && (
-                    <li className='link'>
-                        <a
-                            href={homepage}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                        >
-                            <FontAwesomeIcon icon={faLink} />
-                        </a>
-                    </li>
-                )}
-                {data?.facebook_id && (
-                    <li className='face'>
-                        <a
-                            href={`https://www.facebook.com/${data.facebook_id}`}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                        >
-                            <FontAwesomeIcon icon={faFacebookF} />
-                        </a>
-                    </li>
-                )}
-                {data?.instagram_id && (
-                    <li className='insta'>
-                        <a
-                            href={`https://www.instagram.com/${data.instagram_id}`}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                        >
-                            <FontAwesomeIcon icon={faInstagram} />
-                        </a>
-                    </li>
-                )}
-                {data?.twitter_id && (
-                    <li className='twitter'>
-                        <a
-                            href={`https://www.twitter.com/${data.twitter_id}`}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                        >
-                            <FontAwesomeIcon icon={faTwitter} />
-                        </a>
-                    </li>
-                )}
-                {data?.imdb_id && (
-                    <li className='imdb'>
-                        <a
-                            href={`https://www.imdb.com/${data.imdb_id}`}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                        >
-                            <FontAwesomeIcon icon={faImdb} />
-                        </a>
-                    </li>
-                )}
-            </ul>
-        </div>
+        <section css={cssSocialLinks}>
+            <div className='container'>
+                <h4>Social</h4>
+                <ul css={cssList}>
+                    {homepage && (
+                        <li className='link'>
+                            <a
+                                href={homepage}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                <FontAwesomeIcon icon={faLink} />
+                            </a>
+                        </li>
+                    )}
+                    {data?.facebook_id && (
+                        <li className='face'>
+                            <a
+                                href={`https://www.facebook.com/${data.facebook_id}`}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                <FontAwesomeIcon icon={faFacebookF} />
+                            </a>
+                        </li>
+                    )}
+                    {data?.instagram_id && (
+                        <li className='insta'>
+                            <a
+                                href={`https://www.instagram.com/${data.instagram_id}`}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                <FontAwesomeIcon icon={faInstagram} />
+                            </a>
+                        </li>
+                    )}
+                    {data?.twitter_id && (
+                        <li className='twitter'>
+                            <a
+                                href={`https://www.twitter.com/${data.twitter_id}`}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                <FontAwesomeIcon icon={faTwitter} />
+                            </a>
+                        </li>
+                    )}
+                    {data?.imdb_id && (
+                        <li className='imdb'>
+                            <a
+                                href={`https://www.imdb.com/${data.imdb_id}`}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                <FontAwesomeIcon icon={faImdb} />
+                            </a>
+                        </li>
+                    )}
+                </ul>
+            </div>
+        </section>
     );
 };
 
 export default SocialLinks;
 
 const cssSocialLinks = css({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-
     "& h4": {
+        display: "block",
         color: red,
         fontWeight: "700",
         fontSize: "1.8rem",

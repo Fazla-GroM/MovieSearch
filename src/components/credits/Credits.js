@@ -4,7 +4,7 @@ import { red } from "../../themeVar";
 import { Link } from "react-router-dom";
 //components
 import Swiper from "react-id-swiper";
-
+import "swiper/css/swiper.css";
 const imgUrl = process.env.IMAGE_URL;
 
 const Credits = ({ data }) => {
@@ -26,28 +26,30 @@ const Credits = ({ data }) => {
                 slidesPerView: 2,
             },
             1200: {
-                slidesPerView: 4,
+                slidesPerView: 6,
             },
         },
     };
 
     return (
         <section css={cssCredits}>
-            <h4>Top billed cast</h4>
-            {data.cast.length && (
-                <Swiper {...params}>
-                    {data?.cast?.slice(0, 7).map(actor => {
-                        return (
-                            <div key={actor.cast_id}>
-                                <Card data={actor} />;
-                            </div>
-                        );
-                    })}
-                </Swiper>
-            )}
-            <Link className='btn' to='/negdje'>
-                Full Cast &amp; Crew
-            </Link>
+            <div className='container'>
+                <h4>Top billed cast</h4>
+                {data?.cast?.length && (
+                    <Swiper {...params}>
+                        {data.cast.slice(0, 7).map(actor => {
+                            return (
+                                <div key={actor.cast_id}>
+                                    <Card data={actor} />;
+                                </div>
+                            );
+                        })}
+                    </Swiper>
+                )}
+                <Link className='btn' to='/negdje'>
+                    Full Cast &amp; Crew
+                </Link>
+            </div>
         </section>
     );
 };
@@ -55,6 +57,8 @@ export default Credits;
 
 const Card = ({ data }) => {
     const cssCard = css({
+        width: "100%",
+        display: "block",
         "& img": {
             display: "block",
             height: "200px",

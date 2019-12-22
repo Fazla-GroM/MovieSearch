@@ -4,25 +4,22 @@ import { red } from "../../themeVar";
 
 const LanguageList = ({ data }) => {
     return (
-        <div css={cssLanguageList}>
-            <h4>Spoken languages</h4>
-            <ul css={cssList}>
-                {data?.map(lang => (
-                    <li key={lang.name}>{lang.name}</li>
-                ))}
-            </ul>
-        </div>
+        <section css={cssLanguageList}>
+            <div className='container'>
+                <h4>Spoken languages</h4>
+                <ul css={cssList}>
+                    {data?.map(lang => (
+                        <li key={lang.name}>{lang.name}</li>
+                    ))}
+                </ul>
+            </div>
+        </section>
     );
 };
 
 export default LanguageList;
 
 const cssLanguageList = css({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-
     "& h4": {
         color: red,
         fontWeight: "700",
