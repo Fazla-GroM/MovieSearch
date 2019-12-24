@@ -4,7 +4,7 @@ import { red } from "../../themeVar";
 import { Link } from "react-router-dom";
 //components
 import Swiper from "react-id-swiper";
-import "swiper/css/swiper.css";
+
 const imgUrl = process.env.IMAGE_URL;
 
 const Credits = ({ data }) => {
@@ -35,7 +35,7 @@ const Credits = ({ data }) => {
         <section css={cssCredits}>
             <div className='container'>
                 <h4>Top billed cast</h4>
-                {data?.cast?.length && (
+                {data.cast.length && (
                     <Swiper {...params}>
                         {data.cast.slice(0, 7).map(actor => {
                             return (
@@ -58,6 +58,7 @@ export default Credits;
 const Card = ({ data }) => {
     const cssCard = css({
         width: "100%",
+        minWidth: "100%",
         display: "block",
         "& img": {
             display: "block",
@@ -73,12 +74,14 @@ const Card = ({ data }) => {
 };
 
 const cssCredits = css({
+    width: "100%",
     "& h4": {
         color: red,
         fontWeight: "700",
-        fontSize: "1.8rem",
+        fontSize: "2.5rem",
         textAlign: "left",
         width: "100%",
+        marginBottom: "1rem",
     },
     "& h5": {
         color: red,
