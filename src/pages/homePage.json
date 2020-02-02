@@ -1,0 +1,27 @@
+{
+  "heroTitle": {
+    "main": "MovieSearch",
+    "sub": "Your number One place to find,store and share your favorite movies with friends!"
+  },
+
+  "tabMenu": [
+    {
+      "id": "0",
+      "label": "Free",
+      "title": " Completly Free",
+      "description": "Pig chuck capicola bresaola sirloin pork belly bacon boudin chislic kielbasa spare ribs beef ribs beef. Tail pork chop ground round chuck, t-bone cupim pastrami hamburger fatback. Tail rump bacon t-bone turducken, kielbasa beef ribs meatloaf. Tenderloin pork chop boudin bacon pancetta drumstick."
+    },
+    {
+      "id": "1",
+      "label": "Pwa",
+      "title": "Install it on Your device",
+      "description": "Pig chuck capicola bresaola sirloin pork belly bacon boudin chislic kielbasa spare ribs beef ribs beef. Tail pork chop ground round chuck, t-bone cupim pastrami hamburger fatback. Tail rump bacon t-bone turducken, kielbasa beef ribs meatloaf. Tenderloin pork chop boudin bacon pancetta drumstick."
+    },
+    {
+      "id": "2",
+      "label": "share",
+      "title": "Share movies with friends",
+      "description": "Pig chuck capicola bresaola sirloin pork belly bacon boudin chislic kielbasa spare ribs beef ribs beef. Tail pork chop ground round chuck, t-bone cupim pastrami hamburger fatback. Tail rump bacon t-bone turducken, kielbasa beef ribs meatloaf. Tenderloin pork chop boudin bacon pancetta drumstick."
+    }
+  ]
+}

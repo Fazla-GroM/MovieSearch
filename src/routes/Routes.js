@@ -1,157 +1,120 @@
-import React from "react";
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
-//pages
-import HomePage from "../pages/homePage/HomePage";
-import DiscoverPage from "../pages/discoverPage/DiscoverPage";
-import SearchPage from "../pages/searchPage/SearchPage";
-import FavoritesPage from "../pages/favoritesPage/FavoritesPage";
-import SignUpPage from "../pages/signUpPage/SignUpPage";
-import MovieDetailsPage from "../pages/movieDetailsPage/MovieDetailsPage";
-import TvShowDetailsPage from "../pages/tvShowDetailsPage/TvShowDetailsPage";
-//redux
+import HomePage from "../pages/HomePage"
+import MoviesPage from "../pages/MoviesPage"
+import FavoritesPage from "../pages/FavoritesPage"
+import SearchPage from "../pages/SearchPage"
+import MovieDetailsPage from "../pages/MovieDetailsPage"
+import { ReactComponent as HomeIcon } from "../assets/images/home.svg"
+import { ReactComponent as MovieIcon } from "../assets/images/movies.svg"
+import { ReactComponent as FavoritesIcon } from "../assets/images/favorite.svg"
 import {
-    getPopularMovies,
-    getTopRatedMovies,
-    getUpcomingMovies,
-    getNowPlayingMovies,
-} from "../redux/movies/moviesActions";
+  getPopularMovies,
+  getTopRatedMovies,
+  getUpcomingMovies,
+  getNowPlayingMovies,
+} from "../redux/movies/moviesActions"
 import {
-    selectPopularMovies,
-    selectNowPlayingMovies,
-    selectTopRatedMovies,
-    selectUpcomingMovies,
-} from "../redux/movies/moviesSelectors";
-import {
-    getPopularTvShows,
-    getTopRatedTvShows,
-    getAiringNowTvShows,
-    getAiringTodayTvShows,
-} from "../redux/tvShows/tvShowsActions";
-import {
-    selectPopularTvShows,
-    selectTopRatedTvShows,
-    selectAiringNowTvShows,
-    selectAiringTodayTvShows,
-} from "../redux/tvShows/tvShowsSelectors";
-//css transition
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+  selectPopularMovies,
+  selectTopRatedMovies,
+  selectUpcomingMovies,
+  selectNowPlayingMovies,
+} from "../redux/movies/moviesSelectors"
 
-const Routes = props => {
-    const { location } = props;
-    return (
-        <TransitionGroup component={null}>
-            <CSSTransition
-                key={location.key}
-                timeout={{ enter: 400, exit: 400 }}
-                classNames='fade'
-            >
-                <Switch location={location}>
-                    {/* home */}
-                    <Route exact path='/'>
-                        <HomePage />
-                    </Route>
-                    {/* discover route */}
-                    <Route path='/discover'>
-                        <DiscoverPage />
-                    </Route>
-                    {/* movies route */}
-                    {/* redirect to most popular movies */}
-                    <Route exact path='/movies'>
-                        <Redirect to='/movies/popular' />
-                    </Route>
-                    <Route path='/movies/:id/:id'>
-                        <MovieDetailsPage />
-                    </Route>
-                    <Route path='/movies/popular'>
-                        <SearchPage
-                            {...props}
-                            pageData={{
-                                title: "Popular movies",
-                                getPageData: getPopularMovies,
-                                selector: selectPopularMovies,
-                            }}
-                        />
-                    </Route>
-                    <Route path='/movies/top-rated'>
-                        <SearchPage
-                            pageData={{
-                                title: "Top Rated Movies",
-                                getPageData: getTopRatedMovies,
-                                selector: selectTopRatedMovies,
-                            }}
-                            {...props}
-                        />
-                    </Route>
-                    <Route path='/movies/upcoming'>
-                        <SearchPage
-                            pageData={{
-                                title: "Upcoming Movies",
-                                getPageData: getUpcomingMovies,
-                                selector: selectUpcomingMovies,
-                            }}
-                        />
-                    </Route>
+export const mainRoutes = [
+  {
+    path: "/",
+    exact: true,
+    name: "Home",
+    Component: HomePage,
+  },
+  {
+    path: "/movies/:id/:id",
+    name: "Movie Details",
+    Component: MovieDetailsPage,
+  },
+  {
+    path: "/movies",
+    name: "Movies",
+    Component: MoviesPage,
+  },
+  {
+    path: "/favorites",
+    name: "Favorites",
+    Component: FavoritesPage,
+  },
+  {
+    path: "/search",
+    name: "Search",
+    Component: SearchPage,
+  },
+]
 
-                    <Route path='/movies/now-playing'>
-                        <SearchPage
-                            pageData={{
-                                title: "Now Playing Movies",
-                                getPageData: getNowPlayingMovies,
-                                selector: selectNowPlayingMovies,
-                            }}
-                        />
-                    </Route>
+export const mainLinks = [
+  {
+    path: "/",
+    exact: true,
+    name: "Home",
+    Icon: HomeIcon,
+  },
+  {
+    path: "/movies/popular",
+    name: "Movies",
+    Icon: MovieIcon,
+  },
+  {
+    path: "/favorites",
+    name: "Favorites",
+    Icon: FavoritesIcon,
+  },
+]
 
-                    {/* tvShows route */}
-                    {/* redirect to most popular tv-shows */}
-                    <Route exact path='/tv-shows'>
-                        <Redirect to='/tv-shows/popular' />
-                    </Route>
-                    <Route path='/tv-shows/:id/:id'>
-                        <TvShowDetailsPage />
-                    </Route>
-                    <Route path='/tv-shows/popular'>
-                        <SearchPage
-                            pageData={{
-                                title: "Popular tv shows",
-                                getPageData: getPopularTvShows,
-                                selector: selectPopularTvShows,
-                            }}
-                        />
-                    </Route>
-                    <Route path='/tv-shows/top-rated'>
-                        <SearchPage
-                            pageData={{
-                                title: "Top Rated tv shows",
-                                getPageData: getTopRatedTvShows,
-                                selector: selectTopRatedTvShows,
-                            }}
-                        />
-                    </Route>
-                    <Route path='/tv-shows/on-tv'>
-                        <SearchPage
-                            pageData={{
-                                title: "Currently airing tv shows",
-                                getPageData: getAiringNowTvShows,
-                                selector: selectAiringNowTvShows,
-                            }}
-                        />
-                    </Route>
-                    <Route path='/tv-shows/airing-today'>
-                        <SearchPage
-                            pageData={{
-                                title: "AiringToday Tv Shows",
-                                getPageData: getAiringTodayTvShows,
-                                selector: selectAiringTodayTvShows,
-                            }}
-                        />
-                    </Route>
-                    <Route path='/favorites' component={FavoritesPage} />
-                    <Route path='/signup' component={SignUpPage} />
-                </Switch>
-            </CSSTransition>
-        </TransitionGroup>
-    );
-};
+export const routes = [
+  {
+    path: "/",
+    exact: true,
+    name: "Home",
+    Component: HomePage,
+    Icon: HomeIcon,
+    linkRoute: "/",
+  },
+  {
+    path: "/movies",
+    name: "Movies",
+    Component: MoviesPage,
+    Icon: MovieIcon,
+    linkRoute: "/movies/popular",
+  },
+  {
+    path: "/favorites",
+    name: "Favorites",
+    Component: FavoritesPage,
+    Icon: FavoritesIcon,
+    linkRoute: "/favorites",
+  },
+]
 
-export default withRouter(Routes);
+export const moviesRoutes = [
+  {
+    path: "/movies/popular",
+    name: "Popular Movies",
+    getPageData: getPopularMovies,
+    selectPageData: selectPopularMovies,
+  },
+  {
+    path: "/movies/top-rated",
+    name: "Top Rated",
+    getPageData: getTopRatedMovies,
+    selectPageData: selectTopRatedMovies,
+  },
+  {
+    path: "/movies/in-cinemas",
+    name: "In Cinemas",
+    getPageData: getNowPlayingMovies,
+    selectPageData: selectNowPlayingMovies,
+  },
+  {
+    path: "/movies/upcoming",
+    name: "Upcoming",
+    getPageData: getUpcomingMovies,
+    selectPageData: selectUpcomingMovies,
+  },
+]

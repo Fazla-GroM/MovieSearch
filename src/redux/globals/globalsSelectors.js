@@ -1,8 +1,18 @@
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect"
 
-const globalsSelector = state => state.globals;
+const globalsSelector = state => state.globals
 
-export const selectIsNavOpen = createSelector(
-    [globalsSelector],
-    globals => globals.isNavOpen
-);
+export const selectIsMobileSettingsNavOpen = createSelector(
+  [globalsSelector],
+  globals => globals.isMobileSettingsNavOpen
+)
+
+export const selectIsMobileSearchBarOpen = createSelector(
+  [globalsSelector],
+  globals => globals.isMobileSearchBarOpen
+)
+
+export const selectIsDarkTheme = createSelector(
+  [globalsSelector],
+  globals => globals.isDarkTheme
+)

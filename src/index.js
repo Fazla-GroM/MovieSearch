@@ -1,18 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-//router
-import { BrowserRouter } from 'react-router-dom';
-//redux
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import React from "react"
+import { BrowserRouter } from "react-router-dom"
+import { render } from "react-dom"
+import { Provider } from "react-redux"
+import store from "./redux/store"
+import App from "./App"
 
-import App from './App';
+render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("App")
+)
 
-ReactDOM.render(
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>,
-    document.getElementById('root')
-);
+if (module.hot) {
+  module.hot.accept()
+}

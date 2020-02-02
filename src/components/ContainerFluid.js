@@ -1,0 +1,36 @@
+import React from "react"
+import { css } from "@emotion/core"
+import { useTheme } from "emotion-theming"
+
+const ContainerFluid = props => {
+  const cssContainerFluid = css`
+    width: 100%;
+    padding-right: 1.5px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media (min-width: 576px) {
+      max-width: 540px;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+      max-width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 100%;
+    }
+  `
+  return (
+    <div css={cssContainerFluid} {...props}>
+      {props.children}
+    </div>
+  )
+}
+
+export default ContainerFluid
