@@ -9,9 +9,8 @@ import { ReactComponent as SearchIcon } from "../assets/images/search.svg"
 
 const TopMobileTabNav = () => {
   const theme = useTheme()
-  let matchMovies = useRouteMatch("/movies/:slug")
+  let isNotHome = useRouteMatch("/:slug")
   const dispatch = useDispatch()
-  console.log({ matchMovies })
 
   const cssHeader = css({
     width: "100%",
@@ -82,7 +81,7 @@ const TopMobileTabNav = () => {
         </button>
       </div>
       <nav css={cssNav}>
-        {matchMovies && (
+        {isNotHome && (
           <Swiper {...params}>
             <div>
               <TabButton link="/movies/popular" name="Popular" />
