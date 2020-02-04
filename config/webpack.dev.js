@@ -22,7 +22,7 @@ module.exports = {
     historyApiFallback: true,
     open: true,
     overlay: false,
-    host: "192.168.43.32",
+    // host: "192.168.43.32",
     port: 3000,
     hot: true,
   },
