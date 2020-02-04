@@ -24,6 +24,8 @@ const MobileSearchBar = () => {
   const debouncedSearchTerm = useDebounce(userInput, 700)
   const searchBarResults = useSelector(selectSearchBarResults)
 
+  console.log(searchBarResults)
+
   useEffect(() => {
     handleSearch()
   }, [debouncedSearchTerm])
@@ -163,6 +165,7 @@ const MobileSearchBar = () => {
             </button>
             <label css={cssSearchBar} htmlFor="searchBar">
               <input
+                autoComplete="off"
                 id="#searchBar"
                 type="text"
                 autoFocus
@@ -178,9 +181,18 @@ const MobileSearchBar = () => {
                 <ClearSearchIcon />
               </button>
             </label>
-            <button css={cssButton} aria-label="Search">
+            <Link
+              to={{
+                pathname: "/search",
+                data: searchBarResults,
+                searchTerm: userInput,
+              }}
+              css={cssButton}
+              aria-label="Search Results"
+              onClick={handleClose}
+            >
               <SearchIcon />
-            </button>
+            </Link>
           </div>
           <ul css={cssSearchResultsList}>
             {searchBarResults.map((res, index) => {
@@ -190,7 +202,7 @@ const MobileSearchBar = () => {
                   css={cssSearchResultsItem}
                   key={index}
                 >
-                  <Link to="/search/movie/:id">{res.title}</Link>
+                  <Link to={`/search/${res.id}`}>{res.title}</Link>
                 </li>
               )
             })}
