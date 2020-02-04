@@ -4,11 +4,10 @@ import { css } from "@emotion/core"
 import { useTheme } from "emotion-theming"
 import { ReactComponent as HeartIcon } from "../assets/images/favorite.svg"
 
-const imgUrl = process.env.IMAGE_URL
+const IMG_URL = process.env.IMAGE_URL
 
 const MovieCard = ({ data, link }) => {
   const location = useLocation()
-  console.log({ location })
   const theme = useTheme()
 
   const cssMovieCard = css({
@@ -18,7 +17,7 @@ const MovieCard = ({ data, link }) => {
     display: "flex",
     flexDirection: "column",
     ...theme.borderRadius,
-    ...theme.shadows.shadowOne,
+    ...theme.shadows.shadowTwo,
     backgroundColor: "white",
     overflow: "hidden",
     position: "relative",
@@ -29,20 +28,9 @@ const MovieCard = ({ data, link }) => {
   })
   const cssImage = css({
     width: "100%",
-    height: "0",
-    paddingTop: "56.25%",
     position: "relative",
     overflow: "hidden",
     ...theme.borderRadius,
-
-    "& img": {
-      top: "0",
-      left: "0",
-      position: "absolute",
-      objectFit: "cover",
-      height: "100%",
-      width: "100%",
-    },
   })
 
   const cssContent = css({
@@ -107,19 +95,22 @@ const MovieCard = ({ data, link }) => {
       }}
       css={cssMovieCard}
     >
-      <div css={cssImage}>
-        <picture>
-          <source
-            srcSet={`${imgUrl}/w500${data.poster_path}`}
-            media="(min-width: 1024px)"
-          />
-          <source
-            srcSet={`${imgUrl}/w342${data.poster_path}`}
-            media="(min-width: 768px)"
-          />
-          <img src={`${imgUrl}/w185${data.backdrop_path}`} alt={data.title} />
-        </picture>
-      </div>
+      <picture>
+        <source
+          srcSet={`${IMG_URL}/w500${data.backdrop_path}`}
+          media="(min-width: 1024px)"
+        />
+        <source
+          srcSet={`${IMG_URL}/w780${data.backdrop_path} 780w,${IMG_URL}/w300${data.backdrop_path} 300w`}
+          media="(min-width: 768px)"
+        />
+        <img
+          css={cssImage}
+          src={`${IMG_URL}/w300${data.backdrop_path}`}
+          alt={data.title}
+        />
+      </picture>
+
       <div css={cssContent}>
         <h4 css={cssTitle}>{data.title}</h4>
         <div className="rating">
