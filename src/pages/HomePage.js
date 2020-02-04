@@ -20,23 +20,23 @@ const HomePage = () => {
     <>
       <HeroBox />
       <FeaturedMovies
-        cardLink="/movies/popular/:id"
+        cardLink="/movies/popular"
         title="Popular Movies"
         data={pageData.popularMovies}
       />
       <FeaturedMovies
-        cardLink="/movies/in-cinemas/:id"
+        cardLink="/movies/in-cinemas"
         title="In Cinemas"
         data={pageData.nowPlayingMovies}
       />
       <Testimonials />
       <FeaturedMovies
-        cardLink="/movies/top-rated/:id"
+        cardLink="/movies/top-rated"
         title="Top Rated Movies"
         data={pageData.topRatedMovies}
       />
       <FeaturedMovies
-        cardLink="/movies/upcoming/:id"
+        cardLink="/movies/upcoming"
         title="Comming Soon"
         data={pageData.upcomingMovies}
       />
