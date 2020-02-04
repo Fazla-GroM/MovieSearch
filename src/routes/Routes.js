@@ -27,7 +27,7 @@ export const mainRoutes = [
     Component: HomePage,
   },
   {
-    path: "/movies/:id/:id",
+    path: "/movies/:slug/:id",
     name: "Movie Details",
     Component: MovieDetailsPage,
   },
@@ -40,6 +40,10 @@ export const mainRoutes = [
     path: "/favorites",
     name: "Favorites",
     Component: FavoritesPage,
+  },
+  {
+    path: "/search/:id",
+    Component: MovieDetailsPage,
   },
   {
     path: "/search",
@@ -56,39 +60,14 @@ export const mainLinks = [
     Icon: HomeIcon,
   },
   {
-    path: "/movies/popular",
-    name: "Movies",
-    Icon: MovieIcon,
-  },
-  {
-    path: "/favorites",
-    name: "Favorites",
-    Icon: FavoritesIcon,
-  },
-]
-
-export const routes = [
-  {
-    path: "/",
-    exact: true,
-    name: "Home",
-    Component: HomePage,
-    Icon: HomeIcon,
-    linkRoute: "/",
-  },
-  {
     path: "/movies",
     name: "Movies",
-    Component: MoviesPage,
     Icon: MovieIcon,
-    linkRoute: "/movies/popular",
   },
   {
     path: "/favorites",
     name: "Favorites",
-    Component: FavoritesPage,
     Icon: FavoritesIcon,
-    linkRoute: "/favorites",
   },
 ]
 
