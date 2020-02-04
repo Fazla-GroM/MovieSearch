@@ -20,6 +20,7 @@ const FeaturedMovies = ({ title, data, cardLink }) => {
     margin: "0 1.5rem",
     marginBottom: theme.margins.sectionMarginBottom,
     ...theme.shadows.shadowOne,
+    ...theme.borderRadius,
     padding: "2rem 0",
 
     [theme.mq[0]]: {
@@ -37,49 +38,6 @@ const FeaturedMovies = ({ title, data, cardLink }) => {
 
     ".swiper-slide": {
       height: "auto",
-    },
-
-    ".swiper-slide-active>:first-child": {
-      ...theme.shadows.shadowOneHover,
-
-      [theme.mq[0]]: {
-        ...theme.shadows.shadowOne,
-        "&:hover": {
-          ...theme.shadows.shadowOneHover,
-        },
-      },
-    },
-
-    ".swiper-button-next, .swiper-button-prev": {
-      backgroundColor: "red",
-      opacity: 1,
-      borderRadius: "10rem",
-      width: "6rem",
-      height: "6rem",
-      backgroundColor: "white",
-      ...theme.shadows.shadowThree,
-      outline: "none",
-      overflow: "hidden",
-
-      "&::after": {
-        fontSize: "2.5rem",
-        color: theme.colors.primary,
-        fontWeight: "700",
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        transition: "background-color .3s",
-        borderRadius: "10rem",
-      },
-      "&:hover::after": {
-        backgroundColor: theme.colors.primaryHover,
-      },
-
-      "&:active::after": {
-        backgroundColor: theme.colors.primaryActive,
-      },
     },
   })
 
