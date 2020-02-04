@@ -9,26 +9,25 @@ import {
 import mainApi from "../api/mainApi"
 import store from "../store"
 
-const apiKey = process.env.API_KEY
-const singleMovie = process.env.GET_MOVIE
-const movieCollection = process.env.GET_MOVIE_COLLECTION
-const popularMovies = process.env.GET_POPULAR_MOVIES
-const topRatedMovies = process.env.GET_TOP_RATED_MOVIES
-const upcomingMovies = process.env.GET_UPCOMING_MOVIES
-const nowPlayingMovies = process.env.GET_NOW_PLAYING_MOVIES
+const API_KEY = process.env.API_KEY
+const SINGLE_MOVIE = process.env.GET_MOVIE
+const MOVIE_COLLECTION = process.env.GET_MOVIE_COLLECTION
+const POPULAR_MOVIES = process.env.GET_POPULAR_MOVIES
+const TOP_RATED_MOVIES = process.env.GET_TOP_RATED_MOVIES
+const UPCOMING_MOVIES = process.env.GET_UPCOMING_MOVIES
+const NOW_PLAYING_MOVIES = process.env.GET_NOW_PLAYING_MOVIES
 
 export const getMovie = id => async dispatch => {
-  let res
-  let collection
-
+  let res, collection
+  console.log("FILIM")
   try {
     res = await mainApi.get(
-      `${singleMovie}/${id}?api_key=${apiKey}&language=en-US&append_to_response=videos,images,credits,reviews,external_ids`
+      `${SINGLE_MOVIE}/${id}?api_key=${API_KEY}&language=en-US&append_to_response=videos,images,credits,reviews,external_ids`
     )
     try {
       if (res.data.belongs_to_collection) {
         collection = await mainApi.get(
-          `${movieCollection}/${res.data.belongs_to_collection.id}?api_key=${apiKey}&language=en-US`
+          `${MOVIE_COLLECTION}/${res.data.belongs_to_collection.id}?api_key=${API_KEY}&language=en-US`
         )
       }
     } finally {
@@ -59,7 +58,7 @@ export const getPopularMovies = page => async dispatch => {
   try {
     console.log("fecham filmove")
     res = await mainApi.get(
-      `${popularMovies}?api_key=${apiKey}&language=en-US&page=${page}`
+      `${POPULAR_MOVIES}?api_key=${API_KEY}&language=en-US&page=${page}`
     )
 
     dispatch({
@@ -82,7 +81,7 @@ export const getTopRatedMovies = page => async dispatch => {
   try {
     console.log("fecham filmove")
     res = await mainApi.get(
-      `${topRatedMovies}?api_key=${apiKey}&language=en-US&page=${page}`
+      `${TOP_RATED_MOVIES}?api_key=${API_KEY}&language=en-US&page=${page}`
     )
 
     dispatch({
@@ -105,7 +104,7 @@ export const getUpcomingMovies = page => async dispatch => {
   try {
     console.log("fecham filmove")
     res = await mainApi.get(
-      `${upcomingMovies}?api_key=${apiKey}&language=en-US&page=${page}`
+      `${UPCOMING_MOVIES}?api_key=${API_KEY}&language=en-US&page=${page}`
     )
 
     dispatch({
@@ -128,7 +127,7 @@ export const getNowPlayingMovies = page => async dispatch => {
   try {
     console.log("fecham filmove")
     res = await mainApi.get(
-      `${nowPlayingMovies}?api_key=${apiKey}&language=en-US&page=${page}`
+      `${NOW_PLAYING_MOVIES}?api_key=${API_KEY}&language=en-US&page=${page}`
     )
 
     dispatch({
